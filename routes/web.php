@@ -26,4 +26,8 @@ Route::get('/Admin.index',[AdminController::class,'adminindex'])->name('admin.in
 //Userscreen
 Route::get('/User.index',[UserController::class,'userindex'])->name('userindex')->middleware(validuser::class);
 
+route::get("/sidebar.index",function(){
+    return view("User.user");
+});
+
 
