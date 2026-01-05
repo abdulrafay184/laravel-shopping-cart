@@ -26,8 +26,11 @@ Route::get('/Admin.index',[AdminController::class,'adminindex'])->name('admin.in
 //Userscreen
 Route::get('/User.index',[UserController::class,'userindex'])->name('userindex')->middleware(validuser::class);
 
-route::get("/sidebar.index",function(){
-    return view("User.user");
-});
+//allusers
+Route::get('/admin.alluser',[AdminController::class,'getusers'])->name('allusers')->middleware(validuser::class);
+
+// user delete
+Route::get('/admin.userdel/{id}',[AdminController::class,'deleteuser'])->name('userdelete')->middleware(validuser::class);
+
 
 
