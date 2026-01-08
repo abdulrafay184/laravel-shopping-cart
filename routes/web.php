@@ -42,3 +42,18 @@ Route::get('/fatchProducts',[ProductsController::class,'FatchProducts'])->name('
 Route::get('/deletecourse{id}',[ProductsController::class,'delete'])->name('deleteproduct');
 
 
+
+
+
+
+// EDIT USER
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])
+    ->name('useredit');
+
+// UPDATE USER
+Route::post('/user/update/{id}', [UserController::class, 'update'])
+    ->name('userupdate');
+
+// ADMIN DASHBOARD
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+    ->name('admindashboard');

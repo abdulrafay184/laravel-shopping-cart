@@ -17,6 +17,12 @@ function getusers(){
     return view('Admin.allusers',['alluser'=>$user]);
 }
 
+public function dashboard()
+    {
+        $alluser = User::all();
+        return view('Admin.dashboard', compact('alluser'));
+    }
+
 function deleteuser($id){
 
     $result=User::destroy($id);

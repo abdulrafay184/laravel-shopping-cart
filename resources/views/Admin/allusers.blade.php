@@ -29,8 +29,15 @@
                     <td>{{ $users->mail}}</td>
                     <td>{{ $users->role}}</td>
                     <td>
-                       [ <a href="">Edit</a> || <a href="{{ route('userdelete',$users->id) }}">Delete</a> ]
-                    </td>
+                        <td>
+ [ 
+   <a href="{{ route('useredit', $users->id) }}">Edit</a> 
+   || 
+   <a href="{{ route('userdelete',$users->id) }}">Delete</a> 
+ ]
+</td>
+
+                                          </td>
                 </tr>
             @endforeach
             </table>
