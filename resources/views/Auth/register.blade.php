@@ -4,21 +4,144 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration</title>
-  <link rel="stylesheet" href="style/register.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <style>
-    /* Animated login link */
-    .login-link {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
-      color: #3498db;
-      font-weight: bold;
+    /* Dark background with gradient */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Form wrapper */
+    .wrapper {
+      width: 400px;
+      padding: 40px 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1); /* half white */
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      animation: floatForm 2.5s ease-in-out infinite alternate;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00aaff;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      animation: floatTitle 3s ease-in-out infinite;
+    }
+
+    .input-box {
       position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 14px 45px 14px 15px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 16px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+      transition: all 0.4s ease;
+    }
+
+    .input-box input:focus {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 0 12px #00aaff, 0 0 20px #80dfff;
+      transform: translateY(-2px);
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #00aaff;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .input-box input:focus + i {
+      color: #80dfff;
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .remember-forgot label input {
+      margin-right: 5px;
+    }
+
+    .remember-forgot a {
+      color: #00aaff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .remember-forgot a:hover {
+      color: #80dfff;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: linear-gradient(135deg,#00aaff,#80dfff);
+      color: #0d1b2a;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      animation: btnPulse 2s infinite;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6), 0 0 20px #00aaff, 0 0 20px #80dfff;
+    }
+
+    @keyframes btnPulse {
+      0% { box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+      50% { box-shadow:0 12px 25px rgba(0,0,0,0.6), 0 0 25px #00aaff, 0 0 25px #80dfff; }
+      100% { box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+    }
+
+    .login-link-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .login-link {
+      position: relative;
+      text-decoration: none;
+      color: #00aaff;
+      font-weight: 600;
       transition: 0.3s;
     }
 
-    /* Underline animation on hover */
     .login-link::after {
       content: '';
       position: absolute;
@@ -26,22 +149,30 @@
       height: 2px;
       left: 0;
       bottom: -3px;
-      background-color: #3498db;
+      background-color: #00aaff;
       transition: width 0.3s ease;
     }
 
     .login-link:hover {
-      color: #2980b9;
+      color: #80dfff;
     }
 
     .login-link:hover::after {
       width: 100%;
+      background: #80dfff;
     }
 
-    /* Optional: center under the form */
-    .login-link-wrapper {
-      text-align: center;
+    @keyframes floatForm{
+      0%{ transform: translateY(0px); }
+      50%{ transform: translateY(-10px); }
+      100%{ transform: translateY(0px); }
     }
+
+    @keyframes floatTitle{
+      0%,100%{ transform:translateY(0);}
+      50%{ transform:translateY(-6px);}
+    }
+
   </style>
 </head>
 <body>
@@ -84,7 +215,6 @@
 
       <button type="submit" class="btn">Register</button>
 
-      <!-- Animated login link -->
       <div class="login-link-wrapper">
         <a href="{{ route('loginpage') }}" class="login-link">Already have an account? Login</a>
       </div>

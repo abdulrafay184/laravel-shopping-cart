@@ -69,7 +69,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="">Insert Products</a>
+                            <a href="{{ route('insertproducts') }}">Insert Products</a>
                             <a href="">All Products</a>
                         </li>
                     </ul>

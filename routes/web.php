@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admincontroller;
+use App\Http\Controllers\Productscontroller;
 use App\Http\middleware\validrole;
 use App\Http\middleware\validuser;
 use Illuminate\Support\Facades\Route;
@@ -32,5 +33,12 @@ Route::get('/admin.alluser',[AdminController::class,'getusers'])->name('allusers
 // user delete
 Route::get('/admin.userdel/{id}',[AdminController::class,'deleteuser'])->name('userdelete')->middleware(validuser::class);
 
+// insert product
+Route::get('admin/insertcourse',[ProductsController::class,'insert'])->name('insertproducts');
+Route::Post('admin/insert',[ProductsController::class,'insertProducts'])->name('insert');
+Route::get('/fatchProducts',[ProductsController::class,'FatchProducts'])->name('fatchProducts');
+
+//course delete
+Route::get('/deletecourse{id}',[ProductsController::class,'delete'])->name('deleteproduct');
 
 
