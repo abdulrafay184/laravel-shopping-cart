@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 text-center mt-3"></div>
 
-        <form action="{{ route('insertproducts') }}" method="post"
+        <form action="{{ route('insert') }}" method="post"
         style="
             max-width:720px;
             margin:50px auto;
@@ -63,9 +63,31 @@
             </div>
 
             <div class="col-md-6">
-                <input type="text" name="Category" placeholder="Product Category"
-                class="form-control animated-input">
-            </div>
+    <select name="Category" class="form-control animated-input" required>
+        <option value="" selected disabled hidden>
+            📦 Select Product Category
+        </option>
+
+        <option value="Electronics">🔌 Electronics</option>
+        <option value="Fashion">👕 Fashion</option>
+        <option value="Mobiles">📱 Mobiles</option>
+        <option value="Laptops">💻 Laptops</option>
+        <option value="Home & Kitchen">🏠🍳 Home & Kitchen</option>
+        <option value="Beauty & Personal Care">💄 Beauty & Personal Care</option>
+        <option value="Health & Wellness">💊 Health & Wellness</option>
+        <option value="Grocery">🛒 Grocery</option>
+        <option value="Footwear">👟 Footwear</option>
+        <option value="Watches">⌚ Watches</option>
+        <option value="Bags & Accessories">👜 Bags & Accessories</option>
+        <option value="Sports & Fitness">🏋️ Sports & Fitness</option>
+        <option value="Toys & Games">🧸 Toys & Games</option>
+        <option value="Books & Stationery">📚 Books & Stationery</option>
+        <option value="Furniture">🛋️ Furniture</option>
+    </select>
+        </div>
+
+
+
         </div>
 
         <div class="row mb-4">

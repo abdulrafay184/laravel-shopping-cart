@@ -34,11 +34,11 @@ Route::get('/admin.alluser',[AdminController::class,'getusers'])->name('allusers
 Route::get('/admin.userdel/{id}',[AdminController::class,'deleteuser'])->name('userdelete')->middleware(validuser::class);
 
 // insert product
-Route::get('admin/insertcourse',[ProductsController::class,'insert'])->name('insertproducts');
+Route::Get('admin/insertproducts',[ProductsController::class,'insert'])->name('insertproducts');
 Route::Post('admin/insert',[ProductsController::class,'insertProducts'])->name('insert');
 Route::get('/fatchProducts',[ProductsController::class,'FatchProducts'])->name('fatchProducts');
 
 //course delete
-Route::get('/deletecourse{id}',[ProductsController::class,'delete'])->name('deleteproduct');
+Route::get('/deletecourse{id}',[ProductsController::class,'deleteProduct'])->name('deleteproduct');
 
 
