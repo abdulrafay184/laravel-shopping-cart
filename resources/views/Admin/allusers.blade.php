@@ -6,68 +6,137 @@
 
     <div class="row">
         @if (session('success'))
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success mt-3" role="alert">
                 {{ session('success') }}
             </div>
         @endif
+
         <div class="col-md-2"></div>
-        <div class="col-md-8 text-center">
+        <div class="col-md-8">
 
-            <table class="table mt-4" style="border-collapse: separate; border-spacing:0; transition:all 0.3s;">
-    <tr style="background:#a8c0ff; color:#fff; text-transform:uppercase; letter-spacing:1px;">
-        <th style="padding:12px;">ID</th>
-        <th style="padding:12px;">Name</th>
-        <th style="padding:12px;">Mail</th>
-        <th style="padding:12px;">Role</th>
-        <th style="padding:12px;">Actions</th>
-    </tr>
+            <div class="mb-4 mt-4 text-center all-users-heading">
+    <h2 class="fw-bold text-primary">
+        <i class="bi bi-people-fill me-2"></i>All Users
+    </h2>
+    <p class="text-muted">View and manage all registered users</p>
+</div>
 
-    @foreach ($alluser as $index => $users)
-    <tr
-        style="background: {{ $index % 2 == 0 ? '#ffffff' : '#e6f0ff' }}; transition: all 0.3s ease;"
-        onmouseover="this.style.background='#d0e0ff'; this.style.transform='scale(1.02)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.1)';"
-        onmouseout="this.style.background='{{ $index % 2 == 0 ? '#ffffff' : '#e6f0ff' }}'; this.style.transform='scale(1)'; this.style.boxShadow='none';"
-    >
-        <td style="padding:12px; font-weight:600;">{{ $users->id}}</td>
-        <td style="padding:12px;">{{ $users->name}}</td>
-        <td style="padding:12px;">{{ $users->mail}}</td>
-        <td style="padding:12px;">{{ $users->role}}</td>
-        <td style="padding:12px; display:flex; gap:6px;">
-            <!-- Edit Link -->
-            <a href=""
-            style="
-                color:#4facfe;
-                font-weight:600;
-                text-decoration:none;
-                padding:4px 10px;
-                border-radius:12px;
-                transition: all 0.3s ease;
-            "
-            onmouseover="this.style.background='#667eea'; this.style.color='#fff'; this.style.transform='scale(1.1)';"
-            onmouseout="this.style.background='transparent'; this.style.color='#4facfe'; this.style.transform='scale(1)';"
-            >Edit</a> /
-            <!-- Delete Link -->
-            <a href="{{ route('userdelete',$users->id) }}"
-            style="
-                color:#ff4d4d;
-                font-weight:600;
-                text-decoration:none;
-                padding:4px 10px;
-                border-radius:12px;
-                transition: all 0.3s ease;
-            "
-            onmouseover="this.style.background='#ff6b6b'; this.style.color='#fff'; this.style.transform='scale(1.1)';"
-            onmouseout="this.style.background='transparent'; this.style.color='#ff4d4d'; this.style.transform='scale(1)';"
-            >Delete</a>
-        </td>
-    </tr>
-    @endforeach
-</table>
+
+            <table class="table table-striped table-hover table-bordered text-center custom-table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Mail</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($alluser as $users)
+                        <tr>
+                            <td>{{ $users->id }}</td>
+                            <td>{{ $users->name }}</td>
+                            <td>{{ $users->mail }}</td>
+                            <td>{{ $users->role }}</td>
+                            <td>
+                                <a href="{{ route('useredit', $users->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('userdelete', $users->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
         </div>
         <div class="col-md-2"></div>
     </div>
 </div>
+
 @endsection
 
-{{-- {{ route('userdelete',$users->id) }} --}}
+{{-- Custom CSS --}}
+
+<style>
+/* Container & Dashboard Heading */
+.container h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.container p {
+    font-size: 1rem;
+}
+
+/* Alert Styling */
+.alert-success {
+    font-weight: 500;
+    border-left: 5px solid #198754;
+}
+
+/* Table Card */
+.table-responsive {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Table Styling */
+table.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* space between rows */
+}
+
+table.table thead th {
+    border: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 12px;
+}
+
+table.table tbody tr {
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+table.table tbody tr:hover {
+    background-color: #e2e6ea;
+}
+
+/* Table Cells */
+table.table td {
+    vertical-align: middle;
+    padding: 12px;
+}
+
+/* Badges */
+.badge {
+    font-size: 0.85rem;
+    padding: 0.4em 0.65em;
+}
+
+/* Buttons */
+.btn-sm {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-sm:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    table.table td, table.table th {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+    .container h1 {
+        font-size: 2rem;
+    }
+}
+</style>

@@ -70,13 +70,13 @@
                     <ul class="cat-sub-menu">
                         <li>
                             <a href="{{ route('insertproducts') }}">Insert Products</a>
-                            <a href="">All Products</a>
+                            <a href="{{ route('fatchProducts') }}">All Products</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon image" aria-hidden="true"></span>Media
+                        <span class="icon image" aria-hidden="true"></span>Orders
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -84,7 +84,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="media-01.html">Media-01</a>
+                            <a href="media-01.html">All Orders</a>
                         </li>
                         <li>
                             <a href="media-02.html">Media-02</a>
@@ -167,7 +167,7 @@
                 <picture><source srcset="./img/avatar/avatar-illustrated-01.webp" type="image/webp"><img src="./img/avatar/avatar-illustrated-01.png" alt="User name"></picture>
             </span>
             <div class="sidebar-user-info">
-                <span class="sidebar-user__title">Nafisa Sh.</span>
+                <span class="sidebar-user__title">Abdul Rafay</span>
                 <span class="sidebar-user__subtitle">Support manager</span>
             </div>
         </a>

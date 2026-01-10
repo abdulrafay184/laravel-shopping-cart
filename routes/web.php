@@ -33,6 +33,19 @@ Route::get('/admin.alluser',[AdminController::class,'getusers'])->name('allusers
 // user delete
 Route::get('/admin.userdel/{id}',[AdminController::class,'deleteuser'])->name('userdelete')->middleware(validuser::class);
 
+//user edit
+// EDIT USER
+Route::get('/user/edit/{id}', [AdminController::class, 'edit'])
+    ->name('useredit');
+
+// UPDATE USER
+Route::post('/user/update/{id}', [AdminController::class, 'update'])
+    ->name('userupdate');
+
+// ADMIN DASHBOARD
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+    ->name('admindashboard');
+    
 // insert product
 Route::Get('admin/insertproducts',[ProductsController::class,'insert'])->name('insertproducts');
 Route::Post('admin/insert',[ProductsController::class,'insertProducts'])->name('insert');
