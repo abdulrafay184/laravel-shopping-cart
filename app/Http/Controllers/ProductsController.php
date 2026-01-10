@@ -1,67 +1,95 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Products;
+
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    function insert(){
-        return view ('Admin.insertproducts');
+    // ================= ADMIN =================
+
+    // Show Insert Product Form
+    public function insert(){
+        return view('Admin.insertproducts');
     }
 
-    function insertProducts(Request $req){
-
-
-        $data=$req->validate([
-            'Name'=>'required',
-            'Price'=>'required',
-            'Quantity'=>'required',
-            'Description'=>'required',
-            'Category'=>'required',
-            'Status'=>'required',
-            'Image'=>'required|image|mimes:jgp,jpeg,png,gif',
+    // Insert Product
+    public function insertProducts(Request $req){
+        $data = $req->validate([
+            'Name' => 'required',
+            'Price' => 'required',
+            'Quantity' => 'required',
+            'Description' => 'required',
+            'Category' => 'required',
+            'Status' => 'required',
+            'Image' => 'required|image|mimes:jpg,jpeg,png,gif',
         ]);
 
-        $file=$req->file('Image')->store("Products","public");
-        $path=basename($file);
+        // Upload image
+        $file = $req->file('Image')->store("Products", "public");
+        $path = basename($file);
 
+        $product = new Product();
+        $product->Name = $data['Name'];
+        $product->Price = $data['Price'];
+        $product->Description = $data['Description'];
+        $product->Quantity = $data['Quantity'];
+        $product->Categary = $data['Category']; // spelling fix
+        $product->Status = $data['Status'];
+        $product->pic = $path;
+        $product->save();
 
-        $Products=new Products();
-        $Products->Name=$data['Name'];
-        $Products->Price=$data['Price'];
-        $Products->Description=$data['Description'];
-        $Products->Quantity=$data['Quantity'];
-        $Products->Categary=$data['Category'];
-        $Products->Status=$data['Status'];
-        $Products->pic=$path;
-        $Products->save();
-
-        if($Products){
-            return redirect()->route('fatchProducts')->with('success','Product is inserted...');
-        }
-        else{
-            return 'Data not inserteddd....';
-        }
+        return redirect()->route('fatchProducts')->with('success', 'Product inserted successfully.');
     }
 
-    function FatchProducts(){
+    // Fetch All Products (Admin)
+    public function FatchProducts(){
+        $fatch = Product::all();
+        return view('Admin.FatchProducts', compact("fatch"));
+    }
 
-        $fatch=Products::all();
+    // Delete Product
+    public function deleteProduct($id){
+        Product::destroy($id);
+        return redirect()->route('fatchProducts')->with('success', 'Product deleted successfully.');
+    }
 
-            return view('Admin.FatchProducts',compact("fatch"));
-        }
+    // ================= HOME / USER =================
 
-        function deleteProduct($id){
-            $result=Products::destroy($id);
+    // Home Page: Latest 6 products
+    public function index(){
+        $products = Product::latest()->take(6)->get();
+        return view('index', compact('products'));
+    }
 
-            if($result){
-                return redirect()->route('fatchProducts')->with('success','Product deleted succesfully...');
-            }
-            else{
-                return redirect()->route('fatchProducts');
-            }
-        }
+    // Product Detail Page
+    public function show($id){
+        $product = Product::findOrFail($id);
+        return view('User.product_detail', compact('product'));
+    }
 
+    // Place Order Page
+    public function order($id){
+        $product = Product::findOrFail($id);
+        return view('User.place_order', compact('product'));
+    }
 
+    // Category Products Page
+    public function categoryProducts($category){
+        $products = Product::where('Categary', $category)->get();
+        return view('User.category_products', compact('products', 'category'));
+    }
+}
+
+// Category Products
+ function categoryProducts($category){
+    $products = Product::where('Categary', $category)->get();
+    return view('User.category_products', compact('products', 'category'));
+}
+
+// Product Detail
+ function show($id){
+    $product = Product::findOrFail($id);
+    return view('User.product_detail', compact('product'));
 }

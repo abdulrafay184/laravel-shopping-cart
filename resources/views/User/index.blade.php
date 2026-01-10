@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item active"><a class="nav-link" href="{{route('userindex')}}">Home</a></li>
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Shop</a>
@@ -60,7 +61,7 @@
                   <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <a class="nav-link" href="{{ route('contact') }}">Contact</a>
             </ul>
 
             <ul class="nav-shop">
@@ -128,34 +129,35 @@
     <!--================ Hero Carousel end =================-->
 
     <!-- ================ trending product section start ================= -->
-    <section class="section-margin calc-60px">
+      <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
           <p>Popular Item in the market</p>
           <h2>Trending <span class="section-intro__style">Product</span></h2>
         </div>
         <div class="row">
+          @forelse($products as $product)
           <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card text-center card-product">
               <div class="card-product__img">
-                <img class="card-img" src="assets/img/product/product1.png" alt="">
+                <img class="card-img" src="{{ asset('storage/Products/'.$product->pic) }}" alt="{{ $product->Name }}" style="height:250px; object-fit:cover;">
                 <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
+                  <li><a href="{{ route('product.details', $product->id) }}"><i class="ti-search"></i></a></li>
                   <li><button><i class="ti-shopping-cart"></i></button></li>
                   <li><button><i class="ti-heart"></i></button></li>
                 </ul>
               </div>
               <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                <p class="card-product__price">$150.00</p>
+                <p>{{ $product->Categary }}</p>
+                <h4 class="card-product__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->Name }}</a></h4>
+                <p class="card-product__price">Rs {{ $product->Price }}</p>
+                <a href="{{ route('category.products', ['category' => $product->Categary]) }}" class="btn btn-secondary mt-2">View Category</a>
               </div>
             </div>
           </div>
-          
-              </div>
-            </div>
-          </div>
+          @empty
+          <p class="text-center">No products found.</p>
+          @endforelse
         </div>
       </div>
     </section>
@@ -171,7 +173,12 @@
               <h3>Up To 50% Off</h3>
               <h4>Winter Sale</h4>
               <p>Him she'd let them sixth saw light</p>
-              <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
+             <a href="{{ route('category.products', ['category' => 'Winter Sale']) }}">
+    Shop Now
+</a>
+
+
+
             </div>
           </div>
         </div>

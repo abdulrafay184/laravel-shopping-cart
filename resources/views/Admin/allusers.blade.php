@@ -1,4 +1,4 @@
-@extends('Admin.sidebar');
+@extends('Admin.sidebar')
 
 @section('admin')
 
@@ -15,13 +15,11 @@
         <div class="col-md-8">
 
             <div class="mb-4 mt-4 text-center all-users-heading">
-    <h2 class="fw-bold text-primary">
-        <i class="bi bi-people-fill me-2"></i>All Users
-    </h2>
-    <p class="text-muted">View and manage all registered users</p>
-</div>
-
-<<<<<<< HEAD
+                <h2 class="fw-bold text-primary">
+                    <i class="bi bi-people-fill me-2"></i>All Users
+                </h2>
+                <p class="text-muted">View and manage all registered users</p>
+            </div>
 
             <table class="table table-striped table-hover table-bordered text-center custom-table">
                 <thead class="table-dark">
@@ -47,26 +45,6 @@
                         </tr>
                     @endforeach
                 </tbody>
-=======
-            @foreach ($alluser as $users)
-                <tr>
-                    <td>{{ $users->id}}</td>
-                    <td>{{ $users->name}}</td>
-                    <td>{{ $users->mail}}</td>
-                    <td>{{ $users->role}}</td>
-                    <td>
-                        <td>
- [ 
-   <a href="{{ route('useredit', $users->id) }}">Edit</a> 
-   || 
-   <a href="{{ route('userdelete',$users->id) }}">Delete</a> 
- ]
-</td>
-
-                                          </td>
-                </tr>
-            @endforeach
->>>>>>> 0ca455b6c1b1abed189b1e17f28a54106e834a51
             </table>
 
         </div>
@@ -77,7 +55,6 @@
 @endsection
 
 {{-- Custom CSS --}}
-
 <style>
 /* Container & Dashboard Heading */
 .container h1 {

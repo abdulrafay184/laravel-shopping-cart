@@ -2,71 +2,101 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Admincontroller;
-use App\Http\Controllers\Productscontroller;
-use App\Http\middleware\validrole;
-use App\Http\middleware\validuser;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Middleware\validrole;
+use App\Http\Middleware\validuser;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// Welcome / Home Page
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+
+
+
+
+
+// Auth Routes
+Route::get('/auth.register', [AuthController::class, 'registerpage'])->name('registerpage');
+Route::get('/auth.login', [AuthController::class, 'loginpage'])->name('loginpage');
+
+// User Register/Login
+Route::post('/user.add', [AuthController::class, 'userregister'])->name('userregister');
+Route::post('/user.login', [AuthController::class, 'userlogin'])->name('userlogin');
+
+// Admin Dashboard & Routes
+Route::middleware(validrole::class)->group(function () {
+    Route::get('/Admin.index', [AdminController::class, 'adminindex'])->name('admin.index');
+    Route::get('/admin.dashboard', [AdminController::class, 'dashboard'])->name('admindashboard');
+    
+    // All Users
+    Route::get('/admin.alluser', [AdminController::class, 'getusers'])->name('allusers');
+    
+    // User Delete
+    Route::get('/admin.userdel/{id}', [AdminController::class, 'deleteuser'])->name('userdelete');
+    
+    // Admin Edit/Update Users
+    Route::get('/admin/user/edit/{id}', [AdminController::class, 'edit'])->name('admin.useredit');
+    Route::post('/admin/user/update/{id}', [AdminController::class, 'update'])->name('admin.userupdate');
 });
 
-Route::get('/auth.register',[AuthController::class,'registerpage'])->name('registerpage');
-Route::get('/auth.login',[AuthController::class,'loginpage'])->name('loginpage');
-
-//userRegister
-Route::post('/user.add',[AuthController::class,'userregister'])->name('userregister');
-
-//userlogin
-Route::Post('/user.login',[AuthController::class,'userlogin'])->name('userlogin');
-
-//Admin screen
-Route::get('/Admin.index',[AdminController::class,'adminindex'])->name('admin.index')->middleware(validrole::class);
-
-//Userscreen
-Route::get('/User.index',[UserController::class,'userindex'])->name('userindex')->middleware(validuser::class);
-
-//allusers
-Route::get('/admin.alluser',[AdminController::class,'getusers'])->name('allusers')->middleware(validuser::class);
-
-// user delete
-Route::get('/admin.userdel/{id}',[AdminController::class,'deleteuser'])->name('userdelete')->middleware(validuser::class);
-
-//user edit
-// EDIT USER
-Route::get('/user/edit/{id}', [AdminController::class, 'edit'])
-    ->name('useredit');
-
-// UPDATE USER
-Route::post('/user/update/{id}', [AdminController::class, 'update'])
-    ->name('userupdate');
-
-// ADMIN DASHBOARD
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
-    ->name('admindashboard');
+// User Dashboard & Routes
+Route::middleware(validuser::class)->group(function () {
+    Route::get('/User.index', [UserController::class, 'userindex'])->name('userindex');
     
-// insert product
-Route::Get('admin/insertproducts',[ProductsController::class,'insert'])->name('insertproducts');
-Route::Post('admin/insert',[ProductsController::class,'insertProducts'])->name('insert');
-Route::get('/fatchProducts',[ProductsController::class,'FatchProducts'])->name('fatchProducts');
+    // User Edit/Update
+    Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('useredit');
+    Route::post('/user/update/{id}', [UserController::class, 'update'])->name('userupdate');
+});
 
-//course delete
-Route::get('/deletecourse{id}',[ProductsController::class,'deleteProduct'])->name('deleteproduct');
+// Products Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/insertproducts', [ProductsController::class, 'insert'])->name('insertproducts');
+    Route::post('/insert', [ProductsController::class, 'insertProducts'])->name('insert');
+});
 
+// Public Products
+Route::get('/fatchProducts', [ProductsController::class, 'FatchProducts'])->name('fatchProducts');
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
+Route::get('/order/{id}', [ProductsController::class, 'order'])->name('place.order');
 
+// Delete Product
+Route::get('/deletecourse/{id}', [ProductsController::class, 'deleteProduct'])->name('deleteproduct');
 
+Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])
+    ->name('category.products');
 
+    // PUBLIC PRODUCTS
+Route::get('/fatchProducts', [ProductsController::class, 'FatchProducts'])->name('fatchProducts');
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
+Route::get('/order/{id}', [ProductsController::class, 'order'])->name('place.order');
 
+// CATEGORY PRODUCTS
+Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])->name('category.products');
 
-// EDIT USER
-Route::get('/user/edit/{id}', [UserController::class, 'edit'])
-    ->name('useredit');
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
 
-// UPDATE USER
-Route::post('/user/update/{id}', [UserController::class, 'update'])
-    ->name('userupdate');
+// CATEGORY PRODUCTS
+Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])->name('category.products');
 
-// ADMIN DASHBOARD
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
-    ->name('admindashboard');
+// PRODUCT DETAIL
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
+
+// PLACE ORDER
+Route::get('/order/{id}', [ProductsController::class, 'order'])->name('place.order');
+
+// Contact Page
+Route::get('/contact', function(){
+    return view('User.contact');
+})->name('contact');
+
+// Optional: Contact Form Submission (if you want backend)
+Route::post('/contact-submit', [UserController::class, 'submitContact'])->name('contact.submit');
+

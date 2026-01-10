@@ -1,19 +1,13 @@
 @extends('Admin.sidebar')
 
 @section('admin')
-<<<<<<< HEAD
-<div class="container">
-=======
-<form action="{{ route('userupdate', $user->id) }}" method="POST">
-    @csrf
 
 <div class="container mt-4">
->>>>>>> 0ca455b6c1b1abed189b1e17f28a54106e834a51
+
     <div class="row">
         <div class="col-md-3"></div>
 
         <div class="col-md-6">
-<<<<<<< HEAD
 
             <div class="edit-user-form-container mt-5">
                 <h2 class="form-title">Edit User</h2>
@@ -48,45 +42,13 @@
                 </form>
             </div>
 
-=======
-            <h3 class="text-center">Edit User</h3>
-
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('userupdate', $user->id) }}" method="POST">
-                @csrf
-
-                <div class="form-group mt-2">
-                    <label>Name</label>
-                    <input type="text" name="name" value="{{ $user->name }}" class="form-control">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label>Email</label>
-                    <input type="email" name="mail" value="{{ $user->mail }}" class="form-control">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label>Role</label>
-                    <input type="text" name="role" value="{{ $user->role }}" class="form-control">
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-3 w-100">
-                    Update User
-                </button>
-            </form>
->>>>>>> 0ca455b6c1b1abed189b1e17f28a54106e834a51
         </div>
 
         <div class="col-md-3"></div>
     </div>
 </div>
 
-<<<<<<< HEAD
+{{-- Animated Form CSS --}}
 <style>
 /* ===== Form Container ===== */
 .edit-user-form-container {
@@ -193,6 +155,5 @@
     .edit-user-form-container { padding: 25px 20px; }
 }
 </style>
-=======
->>>>>>> 0ca455b6c1b1abed189b1e17f28a54106e834a51
+
 @endsection
