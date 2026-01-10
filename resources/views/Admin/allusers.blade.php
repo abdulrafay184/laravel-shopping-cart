@@ -21,6 +21,7 @@
     <p class="text-muted">View and manage all registered users</p>
 </div>
 
+<<<<<<< HEAD
 
             <table class="table table-striped table-hover table-bordered text-center custom-table">
                 <thead class="table-dark">
@@ -46,6 +47,26 @@
                         </tr>
                     @endforeach
                 </tbody>
+=======
+            @foreach ($alluser as $users)
+                <tr>
+                    <td>{{ $users->id}}</td>
+                    <td>{{ $users->name}}</td>
+                    <td>{{ $users->mail}}</td>
+                    <td>{{ $users->role}}</td>
+                    <td>
+                        <td>
+ [ 
+   <a href="{{ route('useredit', $users->id) }}">Edit</a> 
+   || 
+   <a href="{{ route('userdelete',$users->id) }}">Delete</a> 
+ ]
+</td>
+
+                                          </td>
+                </tr>
+            @endforeach
+>>>>>>> 0ca455b6c1b1abed189b1e17f28a54106e834a51
             </table>
 
         </div>

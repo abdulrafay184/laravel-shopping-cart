@@ -47,8 +47,13 @@
                         <a href="{{ route('useredit', $user->id) }}" class="btn btn-sm btn-primary me-1">
                             Edit
                         </a>
+<<<<<<< HEAD
                         <a href="{{ route('userdelete', $user->id) }}"
                            onclick="return confirm('Are you sure you want to delete this user?')"
+=======
+                        <a href="{{ route('userdelete', $user->id) }}" 
+                           onclick="return confirm('Are you sure you want to delete this user?')" 
+>>>>>>> 0ca455b6c1b1abed189b1e17f28a54106e834a51
                            class="btn btn-sm btn-danger">
                             Delete
                         </a>
