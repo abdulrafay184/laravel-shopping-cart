@@ -70,10 +70,7 @@ class ProductsController extends Controller
     }
 
     // Place Order Page
-    public function order($id){
-        $product = Product::findOrFail($id);
-        return view('User.place_order', compact('product'));
-    }
+
 
     // Category Products Page
     public function categoryProducts($category){

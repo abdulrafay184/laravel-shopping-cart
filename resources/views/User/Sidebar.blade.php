@@ -14,12 +14,11 @@
   <link rel="stylesheet" href="user/assets/vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="user/assets/vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="user/assets/vendors/owl-carousel/owl.carousel.min.css">
-
   <link rel="stylesheet" href="user/assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
-    
+
 
 
 	<header class="header_area">
@@ -61,7 +60,7 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{route('loginpage')}}"a>Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('registerpage')}}">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">Log Out</a></li>
+                  <li class="nav-item"><a class="nav-link" href="">Log Out</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
@@ -80,7 +79,7 @@
 
 @yield("website")
 
-<!--================ Start footer Area  =================-->	
+<!--================ Start footer Area  =================-->
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
@@ -89,11 +88,11 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Our Mission</h4>
 							<p>
-								So seed seed green that winged cattle in. Gathering thing made fly you're no 
+								So seed seed green that winged cattle in. Gathering thing made fly you're no
 								divided deep moved us lan Gathering thing us land years living.
 							</p>
 							<p>
-								So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved 
+								So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
 							</p>
 						</div>
 					</div>
@@ -132,7 +131,7 @@
 									Head Office
 								</p>
 								<p>123, Main Street, Your City</p>
-	
+
 								<p class="sm-head">
 									<span class="fa fa-phone"></span>
 									Phone Number
@@ -141,7 +140,7 @@
 									+123 456 7890 <br>
 									+123 456 7890
 								</p>
-	
+
 								<p class="sm-head">
 									<span class="fa fa-envelope"></span>
 									Email
@@ -182,8 +181,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="js/main.js"></script>
 
 
-  
-    
+
+
   </body>
 </html>
 

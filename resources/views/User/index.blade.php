@@ -14,8 +14,178 @@
   <link rel="stylesheet" href="user/assets/vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="user/assets/vendors/owl-carousel/owl.theme.default.min.css">
   <link rel="stylesheet" href="user/assets/vendors/owl-carousel/owl.carousel.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="user/assets/css/style.css">
+<style>
+    /* ================= ELITE VIP GREEN GLASS PRODUCT CARD ================= */
+.card-product {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3); /* half white */
+  backdrop-filter: blur(14px) saturate(160%) hue-rotate(90deg); /* greenish glass */
+  border: 1px solid rgba(0,128,0,0.25);
+  box-shadow: 0 15px 40px rgba(0,128,0,0.25);
+  transition: all 0.8s cubic-bezier(.19,1,.22,1);
+}
+
+.card-product:hover {
+  transform: translateY(-15px) scale(1.06) rotate(-1deg);
+  box-shadow: 0 35px 80px rgba(0,255,0,0.35);
+}
+
+/* IMAGE CINEMATIC */
+.card-product__img img {
+  border-radius: 20px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(.19,1,.22,1),
+              filter 0.6s ease, box-shadow 0.6s ease;
+}
+
+.card-product:hover .card-product__img img {
+  transform: scale(1.2) rotate(-1deg);
+  filter: brightness(1.1) contrast(1.05) hue-rotate(20deg);
+  box-shadow: 0 15px 45px rgba(0,255,0,0.25);
+}
+
+/* GOLD/GREEN LIGHT SWEEP ANIMATION */
+.card-product::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(0,255,0,0.2), transparent 70%);
+  transform: translateX(-120%);
+  transition: 1s ease;
+}
+
+.card-product:hover::before {
+  transform: translateX(120%);
+}
+
+/* ICON OVERLAY */
+.card-product__imgOverlay {
+  background: rgba(255,255,255,0.2);
+  transition: background 0.4s ease;
+}
+
+.card-product__imgOverlay i {
+  background: radial-gradient(circle,#00ff00,#006400);
+  color: #000;
+  padding: 14px;
+  border-radius: 50%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-product__imgOverlay i:hover {
+  transform: scale(1.3) rotate(15deg);
+  box-shadow: 0 5px 20px rgba(0,255,0,0.45);
+}
+
+/* SLIDER PANEL */
+.card-slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(16px) saturate(160%) hue-rotate(90deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.75s cubic-bezier(.19,1,.22,1);
+  padding: 26px;
+}
+
+.card-product:hover .card-slider {
+  transform: translateY(0);
+}
+
+/* STAGGERED TEXT */
+.card-slider > * {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.6s ease;
+}
+
+.card-product:hover .card-slider > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-product:hover .card-slider > *:nth-child(1){transition-delay:.1s}
+.card-product:hover .card-slider > *:nth-child(2){transition-delay:.2s}
+.card-product:hover .card-slider > *:nth-child(3){transition-delay:.3s}
+.card-product:hover .card-slider > *:nth-child(4){transition-delay:.4s}
+
+/* ================= TYPOGRAPHY ================= */
+.card-body p,
+.slider-category {
+  font-family: 'Inter', sans-serif;
+  color: #000; /* black main text */
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card-product__title a,
+.slider-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #006400; /* dark green VIP */
+  letter-spacing: 0.6px;
+  text-decoration: none;
+}
+
+.card-product__title a:hover,
+.slider-title:hover {
+  color: #00ff00; /* bright green hover */
+}
+
+/* PRICE */
+.card-product__price,
+.slider-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #00ff00; /* green VIP price */
+}
+
+/* ================= BUTTON ================= */
+.slider-btn,
+.card-body .btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg,#006400,#00ff00);
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 28px;
+  border: none;
+  text-decoration: none;
+  transition: all 0.35s ease;
+}
+
+.slider-btn:hover,
+.card-body .btn:hover {
+  transform: scale(1.15) rotate(-1deg);
+  box-shadow: 0 10px 25px rgba(0,255,0,0.45);
+}
+
+/* ================= OPTIONAL MICRO ANIMATIONS ================= */
+.card-product:hover .card-product__title a {
+  animation: textGlow 1.2s infinite alternate;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 2px #00ff00; }
+  to { text-shadow: 0 0 12px #00ff00, 0 0 20px #00ff00; }
+}
+
+</style>
 </head>
 <body>
   <!--================ Start Header Menu Area =================-->
@@ -151,7 +321,7 @@
                 <p>{{ $product->Categary }}</p>
                 <h4 class="card-product__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->Name }}</a></h4>
                 <p class="card-product__price">Rs {{ $product->Price }}</p>
-                <a href="{{ route('category.products', ['category' => $product->Categary]) }}" class="btn btn-secondary mt-2">View Category</a>
+                <a href="{{ route('category.products', ['category' => $product->Categary]) }}" class="btn btn-secondary mt-2">Order Now</a>
               </div>
             </div>
           </div>
@@ -184,241 +354,6 @@
         </div>
       </div>
     </section>
-    <!-- ================ offer section end ================= -->
-
-    <!-- ================ Best Selling item  carousel ================= -->
-    <!-- <section class="section-margin calc-60px">
-      <div class="container">
-        <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Best <span class="section-intro__style">Sellers</span></h2>
-        </div>
-        <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- ================ Best Selling item  carousel end ================= -->
-
-    <!-- ================ Blog section start ================= -->
-    <section class="blog">
-      <div class="container">
-        <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Latest <span class="section-intro__style">News</span></h2>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog1.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">The Richland Center Shooping News and weekly shooper</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog2.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">The Shopping News also offers top-quality printing services</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog3.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">Professional design staff and efficient equipment you’ll find we offer</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ================ Blog section end ================= -->
-
-    <!-- ================ Subscribe section start ================= -->
-    <section class="subscribe-position">
-      <div class="container">
-        <div class="subscribe text-center">
-          <h3 class="subscribe__title">Get Update From Anywhere</h3>
-          <p>Bearing Void gathering light light his eavening unto dont afraid</p>
-          <div id="mc_embed_signup">
-            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
-              <div class="form-group ml-sm-auto">
-                <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
-                <div class="info"></div>
-              </div>
-              <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-              <div style="position: absolute; left: -5000px;">
-                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-              </div>
-
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    <!-- ================ Subscribe section end ================= -->
-
-
-
-  </main>
-
 
   <!--================ Start footer Area  =================-->
 	<footer class="footer">
