@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,11 @@ class OrderController extends Controller
 function orderbook($id){
 $product=Product::find($id);#
 $userid=Auth::user()->id;
+$order=new order();
+$order->userid;
+$order->productid=$product->id;
+$order->quantity=1;
+$order->save();
 
 return view('User.orderconfirm');
 
