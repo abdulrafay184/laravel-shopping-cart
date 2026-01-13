@@ -50,8 +50,8 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Blog</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('blog.index') }}">Blog</a></li>
+                  <li class="nav-item"><a class="nav-link" href="">Blog Details</a></li>
                 </ul>
 							</li>
 							<li class="nav-item submenu dropdown">
@@ -102,7 +102,7 @@
 							<ul class="list">
 								<li><a href="#">Home</a></li>
 								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
+								<li><a href="{{ route('blog.index') }}">Blog</a></li>
 								<li><a href="#">Product</a></li>
 								<li><a href="#">Brand</a></li>
 								<li><a href="#">Contact</a></li>

@@ -92,8 +92,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon paper" aria-hidden="true"></span>Pages
+                    <a class="show-cat-btn" href="{{ route('admin.blog.create') }}">
+                        <span class="icon paper" aria-hidden="true"></span>  Blogs
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -101,17 +101,17 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="pages.html">All pages</a>
+                            <a href="{{ route('admin.blogs') }}"> Blogs</a>
                         </li>
                         <li>
-                            <a href="new-page.html">Add new page</a>
+                            <a href="{{route('admin.blog.create')}}">Create New Blog</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="comments.html">
+                    <a href="{{route('contact.submit')}}">
                         <span class="icon message" aria-hidden="true"></span>
-                        Comments
+                          Messages
                     </a>
                     <span class="msg-counter">7</span>
                 </li>

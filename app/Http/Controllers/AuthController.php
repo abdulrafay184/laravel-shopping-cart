@@ -42,12 +42,15 @@ class AuthController extends Controller
             'password'=>'required'
         ]);
 
-        if(Auth::attempt($logindetail)){
-            return redirect()->route('admin.index');
-        }
-        else{
-            return back()->with('error','user mail or password is not valid...');
-        }
+    if(Auth::attempt($logindetail)){
+    if(Auth::user()->role == 'admin'){
+        return redirect()->route('admin.index');
+    } else {
+        return redirect()->route('userindex');
+    }
+}
+
+
 
     }
 }
