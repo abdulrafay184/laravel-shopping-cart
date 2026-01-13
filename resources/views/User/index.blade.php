@@ -226,13 +226,14 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Pages</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{route('loginpage')}}">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('loginpage')}}"a>Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('registerpage')}}">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
+                  <li class="nav-item"><a class="nav-link" href="">Log Out</a></li>
                 </ul>
               </li>
-              <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+              <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
             </ul>
+
 
             <ul class="nav-shop">
               <li class="nav-item"><button><i class="ti-search"></i></button></li>

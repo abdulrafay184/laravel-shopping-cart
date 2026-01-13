@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('User.Sidebar')
 
 @section('title', 'Contact Us')
 
-@section('content')
+@section('website')
 <div class="container mt-5">
 
     <!-- Google Map -->

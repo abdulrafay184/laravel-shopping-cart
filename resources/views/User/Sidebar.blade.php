@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Aroma Shop - Home</title>
-	<link rel="icon" href="user/assets/img/Fevicon.png" type="image/png">
-  <link rel="stylesheet" href="user/assets/vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="user/assets/vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="user/assets/vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="user/assets/vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="user/assets/vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="user/assets/vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="user/assets/css/style.css">
+	<link rel="icon" href="{{ asset('user/assets/img/Fevicon.png" type="image/png') }}">
+  <link rel="stylesheet" href="{{ asset('user/assets/vendors/bootstrap/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('user/assets/vendors/fontawesome/css/all.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('user/assets/vendors/themify-icons/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('user/assets/vendors/nice-select/nice-select.css') }}">
+  <link rel="stylesheet" href="{{ asset('user/assets/vendors/owl-carousel/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('user/assets/vendors/owl-carousel/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('user/assets/css/style.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="user/assets/img/logo.png" alt=""></a>
+          <a class="navbar-brand logo_h" href="index.html"><img src="{{ asset('user/assets/img/logo.png') }}" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -171,14 +171,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-  <script src="user/assets/vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="user/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="user/assets/vendors/skrollr.min.js"></script>
-  <script src="user/assets/vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="user/assets/vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="user/assets/vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="user/assets/vendors/mail-script.js"></script>
-  <script src="js/main.js"></script>
+  <script src="{{ asset('user/assets/vendors/jquery/jquery-3.2.1.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/bootstrap/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/skrollr.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/nice-select/jquery.nice-select.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/jquery.ajaxchimp.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/mail-script.js') }}"></script>
+  <script src="{{ asset('user/assets/js/main.js') }}"></script>
 
 
 

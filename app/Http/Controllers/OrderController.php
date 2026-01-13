@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -10,4 +11,15 @@ class OrderController extends Controller
         $product = Product::findOrFail($id);
         return view('User.placeorder', compact('product'));
     }
+
+function orderbook($id){
+$product=Product::find($id);#
+$userid=Auth::user()->id;
+
+return view('User.orderconfirm');
+
+}
+
+
+
 }

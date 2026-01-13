@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('User.sidebar')
 
 @section('title', $category.' Products')
 
-@section('content')
+@section('website')
 <div class="container mt-5">
     <h2 class="mb-4">{{ $category }} Products</h2>
     <div class="row">

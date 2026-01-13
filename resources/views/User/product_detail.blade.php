@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('User.Sidebar')
 
 @section('title', $product->Name)
 
-@section('content')
+@section('website')
 <div class="container mt-5">
     <div class="row justify-content-center align-items-center">
         <!-- LEFT: IMAGE -->
@@ -22,7 +22,7 @@
                 <h4 class="product-price mb-3">${{ $product->Price }}</h4>
                 <p class="product-description mb-2">{{ $product->Description }}</p>
                 <p class="product-quantity mb-3">Available Quantity: {{ $product->Quantity }}</p>
-                <a href="{{ route('place.order', $product->id) }}" class="btn btn-vip btn-lg">Place Order</a>
+                <a href="{{ route('orderbook',$product->id) }}" class="btn btn-vip btn-lg">Place Order</a>
             </div>
         </div>
     </div>
