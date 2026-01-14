@@ -51,13 +51,13 @@ class ContactController extends Controller
     public function adminMessages()
     {
         $contacts = Contact::latest()->paginate(10);
-        return view('Admin.contacts', compact('contacts'));
+        return view('admin.contacts', compact('contacts'));
     }
 
     public function replyForm($id)
     {
         $contact = Contact::findOrFail($id);
-        return view('Admin.contact-reply', compact('contact'));
+        return view('admin.contact.reply', compact('contact'));
     }
 
     public function sendReply(Request $request, $id)
@@ -77,4 +77,11 @@ class ContactController extends Controller
         Contact::findOrFail($id)->delete();
         return redirect()->route('admin.contacts')->with('success', 'Message deleted successfully!');
     }
+}
+
+ function replyForm($id)
+{
+    $contact = Contact::findOrFail($id);
+
+    return view('admin.contact.reply', compact('contact'));
 }

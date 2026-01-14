@@ -114,7 +114,7 @@ Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::middleware(['auth', ValidRole::class])->group(function () {
     Route::get('/admin/blogs', [BlogController::class, 'adminIndex'])->name('admin.blogs');
     Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
-    Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('admin.blog.store');
+    Route::post('/admin/blog/store', [BlogController::class, 'stores'])->name('admin.blog.store');
     Route::get('/admin/blog/edit/{id}', [BlogController::class, 'edit'])->name('admin.blog.edit');
     Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('admin.blog.update');
     Route::get('/admin/blog/delete/{id}', [BlogController::class, 'destroy'])->name('admin.blog.delete');

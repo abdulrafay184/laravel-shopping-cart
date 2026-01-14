@@ -2,105 +2,149 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
-    // ------------------ Public ------------------
+    // ================== PUBLIC ==================
 
-    // List all blogs
+    // All blogs
     public function index()
     {
-        $blogs = Blog::latest()->paginate(6); // 6 per page
+        $blogs = Blog::latest()->paginate(6);
         return view('Blog.index', compact('blogs'));
     }
 
-    // Show single blog post
+    // Single blog
     public function show($slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
         return view('Blog.show', compact('blog'));
     }
 
-    // ------------------ Admin ------------------
+    // ================== ADMIN ==================
 
-    // Admin list all blogs
+    // Admin blog list
     public function adminIndex()
     {
         $blogs = Blog::latest()->paginate(10);
         return view('Admin.blogs.index', compact('blogs'));
     }
 
-    // Show create form
+    // Create form
     public function create()
     {
         return view('Admin.blogs.create');
     }
 
-    // Store new blog
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|unique:blogs,slug',
-            'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
+
+public function stores(Request $req){
+        $data = $req->validate([
+            'title' => 'required',
+            'slug' => 'required',
+            'content' => 'required',
+            
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif',
         ]);
 
-        $data = $request->only('title', 'slug', 'content');
+        // Upload image
+        $file = $req->file('image')->store("blogs", "public");
+        $path = basename($file);
 
-        // Image upload
-        if ($request->hasFile('image')) {
-            $filename = time().'_'.$request->image->getClientOriginalName();
-            $request->image->storeAs('public/blog', $filename);
-            $data['image'] = $filename;
-        }
+        $blog = new Blog();
+        
+        $blog->title = $data['title'];
+        $blog->slug=$data['slug'];
+        $blog->content = $data['content'];
+    
+        $blog->image = $path;
+        $blog->save();
 
-        Blog::create($data);
-
-        return redirect()->route('admin.blogs')->with('success', 'Blog post created successfully!');
+        return redirect()->route('admin.blogs')->with('success', 'Blog inserted success');
     }
 
-    // Show edit form
-    public function edit($id)
-    {
-        $blog = Blog::findOrFail($id);
-        return view('Admin.blogs.edit', compact('blog'));
-    }
 
-    // Update blog
-    public function update(Request $request, $id)
-    {
-        $blog = Blog::findOrFail($id);
 
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|unique:blogs,slug,'.$blog->id,
-            'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,webp|max:2048',
-        ]);
+//     // Store blog
+//     public function store(Request $request)
+//     {
+//         $request->validate([
+//             'title'   => 'required|string|max:255',
+//             'slug'    => 'required|string|unique:blogs,slug',
+//             'content' => 'required|string',
+//             'image'   => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+//         ]);
 
-        $data = $request->only('title', 'slug', 'content');
+//         $data = $request->only('title', 'slug', 'content');
 
-        // Image upload
-        if ($request->hasFile('image')) {
-            $filename = time().'_'.$request->image->getClientOriginalName();
-            $request->image->storeAs('public/blog', $filename);
-            $data['image'] = $filename;
-        }
+//         if ($request->hasFile('image')) {
+//             $filename = time().'_'.$request->image->getClientOriginalName();
+//             $request->image->storeAs('blog', $filename, 'public');
+//             $data['image'] = $filename;
+//         }
 
-        $blog->update($data);
+//         Blog::create($data);
 
-        return redirect()->route('admin.blogs')->with('success', 'Blog post updated successfully!');
-    }
+//         return redirect()
+//             ->route('admin.blogs')
+//             ->with('success', 'Blog created successfully');
+//     }
 
-    // Delete blog
-    public function destroy($id)
-    {
-        $blog = Blog::findOrFail($id);
-        $blog->delete();
+//     // Edit form
+//     public function edit($id)
+//     {
+//         $blog = Blog::findOrFail($id);
+//         return view('Admin.blogs.edit', compact('blog'));
+//     }
 
-        return redirect()->route('admin.blogs')->with('success', 'Blog post deleted successfully!');
-    }
-}
+//     // Update blog
+//     public function update(Request $request, $id)
+//     {
+//         $blog = Blog::findOrFail($id);
+
+//         $request->validate([
+//             'title'   => 'required|string|max:255',
+//             'slug'    => 'required|string|unique:blogs,slug,' . $blog->id,
+//             'content' => 'required|string',
+//             'image'   => 'nullable|image|mimes:jpg,jpeg,png,webp,gif|max:2048',
+//         ]);
+
+//         $data = $request->only('title', 'slug', 'content');
+
+//         if ($request->hasFile('image')) {
+
+//             // delete old image
+//             if ($blog->image && Storage::disk('public')->exists('blog/'.$blog->image)) {
+//                 Storage::disk('public')->delete('blog/'.$blog->image);
+//             }
+
+//             $filename = time().'_'.$request->image->getClientOriginalName();
+//             $request->image->storeAs('blog', $filename, 'public');
+//             $data['image'] = $filename;
+//         }
+
+//         $blog->update($data);
+
+//         return redirect()
+//             ->route('admin.blogs')
+//             ->with('success', 'Blog updated successfully');
+//     }
+
+//     // Delete blog
+//     public function destroy($id)
+//     {
+//         $blog = Blog::findOrFail($id);
+
+//         if ($blog->image && Storage::disk('public')->exists('blog/'.$blog->image)) {
+//             Storage::disk('public')->delete('blog/'.$blog->image);
+//         }
+
+//         $blog->delete();
+
+//         return redirect()
+//             ->route('admin.blogs')
+//             ->with('success', 'Blog deleted successfully');
+//     }
+ }
