@@ -24,7 +24,7 @@
                     <p class="text-muted mb-2">{{ \Illuminate\Support\Str::limit($product->Description, 80, '...') }}</p>
 
                     <!-- View Details Button -->
-                    <a href="{{ route('product.details', $product->id) }}" class="btn btn-primary mt-auto">View Details</a>
+                    <a href="{{ route('product.details', $product->id) }}" class="btn btn-primary mt-auto">More Info</a>
                 </div>
             </div>
         </div>

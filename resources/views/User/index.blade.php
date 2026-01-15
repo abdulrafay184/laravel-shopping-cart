@@ -323,7 +323,7 @@
                 <p>{{ $product->Categary }}</p>
                 <h4 class="card-product__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->Name }}</a></h4>
                 <p class="card-product__price">Rs {{ $product->Price }}</p>
-                <a href="{{ route('category.products', ['category' => $product->Categary]) }}" class="btn btn-secondary mt-2">Order Now</a>
+                <a href="{{ route('category.products', ['category' => $product->Categary]) }}" class="btn btn-secondary mt-2">Buy Now</a>
               </div>
             </div>
           </div>

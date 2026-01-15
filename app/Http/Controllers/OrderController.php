@@ -14,10 +14,10 @@ class OrderController extends Controller
     }
 
 function orderbook($id){
-$product=Product::find($id);#
+$product=Product::find($id);
 $userid=Auth::user()->id;
 $order=new order();
-$order->userid;
+$order->userid=$userid;
 $order->productid=$product->id;
 $order->quantity=1;
 $order->save();
