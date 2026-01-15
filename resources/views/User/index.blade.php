@@ -229,7 +229,18 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{route('loginpage')}}"a>Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('registerpage')}}">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="">Log Out</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('history')}}">History</a></li>
+                  <li class="nav-item">
+    <a class="nav-link" href="{{ route('logout') }}"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Log Out
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+        @csrf
+    </form>
+</li>
+
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>

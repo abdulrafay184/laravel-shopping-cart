@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Middleware\ValidRole;
 use App\Http\Middleware\ValidUser;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -134,3 +135,14 @@ Route::get('/fatchOrders', [OrderController::class,'fatchorder'])->name('fatchor
 
 // User history
 Route::get('/user>history',[HistoryController::class,'userhistory'])->name('history');
+
+
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    // login/register page par redirect
+    return redirect()->route('loginpage');
+})->name('logout');
