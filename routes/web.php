@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Middleware\ValidRole;
 use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
@@ -79,9 +80,6 @@ Route::get('/deletecourse/{id}', [ProductsController::class, 'deleteProduct'])->
 // Category Products
 Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])->name('category.products');
 
-// ---------------- ORDERS ----------------
-Route::get('/userorder{id}', [OrderController::class, 'orderbook'])->name('orderbook');
-Route::get('/order/{id}', [OrderController::class,'order'])->name('place.order');
 
 // ---------------- CONTACT ----------------
 // User contact page & submit
@@ -127,3 +125,12 @@ Route::get('/contact-submit', function() {
     return redirect()->route('contact');
 });
 
+
+// ---------------- ORDERS ----------------
+Route::get('/userorder{id}', [OrderController::class, 'orderbook'])->name('orderbook');
+Route::get('/order/{id}', [OrderController::class,'order'])->name('place.order');
+Route::get('/fatchOrders', [OrderController::class,'fatchorder'])->name('fatchorders');
+
+
+// User history
+Route::get('/user>history',[HistoryController::class,'userhistory'])->name('history');

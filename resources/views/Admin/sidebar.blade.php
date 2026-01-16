@@ -84,7 +84,7 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="media-01.html">All Orders</a>
+                            <a href="{{ route('fatchorders') }}">All Orders</a>
                         </li>
                         <li>
                             <a href="media-02.html">Media-02</a>

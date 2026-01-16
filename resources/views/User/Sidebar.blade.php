@@ -60,6 +60,7 @@
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{route('loginpage')}}"a>Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('registerpage')}}">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('history')}}">History</a></li>
                   <li class="nav-item"><a class="nav-link" href="">Log Out</a></li>
                 </ul>
               </li>

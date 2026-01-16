@@ -22,10 +22,12 @@ $order->productid=$product->id;
 $order->quantity=1;
 $order->save();
 
-return view('User.orderconfirm');
+return view('User.History');
 
 }
 
-
+function fatchorder(){
+    return view('Admin.FatchOrders');
+}
 
 }
