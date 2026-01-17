@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
+  <title>Shopings Cards</title>
 	<link rel="icon" href="{{ asset('user/assets/img/Fevicon.png" type="image/png') }}">
   <link rel="stylesheet" href="{{ asset('user/assets/vendors/bootstrap/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('user/assets/vendors/fontawesome/css/all.min.css') }}">
@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="{{ asset('user/assets/vendors/owl-carousel/owl.theme.default.min.css') }}">
   <link rel="stylesheet" href="{{ asset('user/assets/vendors/owl-carousel/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('user/assets/css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
     <title>Document</title>
 </head>
 <body>
@@ -61,7 +64,16 @@
                   <li class="nav-item"><a class="nav-link" href="{{route('loginpage')}}"a>Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('registerpage')}}">Register</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('history')}}">History</a></li>
-                  <li class="nav-item"><a class="nav-link" href="">Log Out</a></li>
+                  <li class="nav-item">
+    <a class="nav-link" href="{{ route('logout') }}"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Log Out
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+        @csrf
+    </form>
+</li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>

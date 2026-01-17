@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutsController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Middleware\ValidRole;
 use App\Http\Middleware\ValidUser;
@@ -137,8 +138,8 @@ Route::get('/fatchOrders', [OrderController::class,'fatchorder'])->name('fatchor
 Route::get('/user>history',[HistoryController::class,'userhistory'])->name('history');
 
 
-
-Route::post('/logout', function () {
+// user logout route
+Route::get('/logout', function () {
     Auth::logout();
     request()->session()->invalidate();
     request()->session()->regenerateToken();
@@ -146,3 +147,7 @@ Route::post('/logout', function () {
     // login/register page par redirect
     return redirect()->route('loginpage');
 })->name('logout');
+
+
+// User checkouts
+Route::get('/user>chekout',[CheckoutsController::class,'usercheckouts'])->name('checkouts');

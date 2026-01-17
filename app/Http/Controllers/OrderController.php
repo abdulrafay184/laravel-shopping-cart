@@ -22,12 +22,16 @@ $order->productid=$product->id;
 $order->quantity=1;
 $order->save();
 
-return view('User.History');
+return redirect()->route('history');
 
 }
 
 function fatchorder(){
-    return view('Admin.FatchOrders');
+    $order=Order::all();
+    return view('Admin.FatchOrders',['allorders'=>$order]);
+
 }
+
+
 
 }
