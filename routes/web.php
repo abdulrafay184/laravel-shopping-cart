@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CheckoutsController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ShopController;
 use App\Http\Middleware\ValidRole;
 use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Auth;
@@ -144,10 +145,12 @@ Route::get('/logout', function () {
     request()->session()->invalidate();
     request()->session()->regenerateToken();
 
-    // login/register page par redirect
+    
     return redirect()->route('loginpage');
 })->name('logout');
 
 
+
 // User checkouts
 Route::get('/user>chekout',[CheckoutsController::class,'usercheckouts'])->name('checkouts');
+
