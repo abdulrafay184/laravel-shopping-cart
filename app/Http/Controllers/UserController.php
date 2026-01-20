@@ -24,7 +24,7 @@ class UserController extends Controller
     public function usercategory()
     {
         $categories = Category::all();
-        return view('User.category', compact('categories'));
+        return view('User.category_products', compact('categories'));
     }
 
     // ======================

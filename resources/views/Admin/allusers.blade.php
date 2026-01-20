@@ -36,7 +36,7 @@
                         <tr>
                             <td>{{ $users->id }}</td>
                             <td>{{ $users->name }}</td>
-                            <td>{{ $users->mail }}</td>
+                            <td>{{ $users->email }}</td>
                             <td>{{ $users->role }}</td>
                             <td>
                                 <a href="{{ route('useredit', $users->id) }}" class="btn btn-sm btn-primary">Edit</a>

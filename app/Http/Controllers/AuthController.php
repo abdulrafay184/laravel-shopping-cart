@@ -13,14 +13,14 @@ class AuthController extends Controller
     }
 
     function loginpage(){
-        return view('Auth.Login');
+        return view('Auth.login');
     }
 
     function userregister(Request $req){
 
         $data=$req->validate([
             'name'=>'required',
-            'mail'=>'required|email|unique:users,mail',
+            'email'=>'required|email|unique:users,email',
             'password'=>'required',
 
         ]);
@@ -37,19 +37,20 @@ class AuthController extends Controller
     }
 
     function userlogin(Request $req){
-        $logindetail=$req->validate([
-            'mail'=>'required|email',
-            'password'=>'required'
-        ]);
+         $logindetail = $req->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-    if(Auth::attempt($logindetail)){
-    if(Auth::user()->role == 'Admin'){
-        return redirect()->route('admin.index');
-    } else {
-        return redirect()->route('userindex');
+    if (Auth::attempt($logindetail)) {
+        $req->session()->regenerate(); // security best practice
+
+        if (Auth::user()->role === 'Admin') {
+            return redirect()->route('admin.index');
+        } else {
+            return redirect()->route('userindex');
+        }
     }
-}
-
 
 
     }

@@ -94,16 +94,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Contact Routes
-Route::middleware(['auth', ValidRole::class])->group(function () {
-    // Show reply form for a message
-    Route::get('/admin/contact/reply/{id}', [ContactController::class, 'replyForm'])
-        ->name('admin.contact.reply');
-
-    // Submit the reply
-    Route::post('/admin/contact/reply/{id}', [ContactController::class, 'sendReply'])
-        ->name('admin.contact.sendReply');
-});
-
+Route::get('/adminreply',[ContactController::class,"adminreply"])->name('adminreply');
 
 
 
@@ -140,7 +131,7 @@ Route::get('/user>history',[HistoryController::class,'userhistory'])->name('hist
 
 
 // user logout route
-Route::get('/logout', function () {
+Route::post('/logout', function () {
     Auth::logout();
     request()->session()->invalidate();
     request()->session()->regenerateToken();
@@ -153,4 +144,9 @@ Route::get('/logout', function () {
 
 // User checkouts
 Route::get('/user>chekout',[CheckoutsController::class,'usercheckouts'])->name('checkouts');
+
+
+
+Route::post('/userCheckouts', [CheckoutsController::class,'usercheckoutsconfirm'])->name('checkoutconfirm');
+Route::get('/checkoutsFatch',[CheckoutsController::class,'fatchcheckout'])->name('fatchcheckout');
 
