@@ -87,7 +87,7 @@
                             <a href="{{ route('fatchorders') }}">All Orders</a>
                         </li>
                         <li>
-                            <a href="media-02.html">Media-02</a>
+                            <a href="{{ route('fatchcheckout') }}">Confirm Checkouts</a>
                         </li>
                     </ul>
                 </li>
@@ -109,13 +109,13 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('contact.submit')}}">
+                    <a href="{{route('adminreply')}}">
                         <span class="icon message" aria-hidden="true"></span>
                           Messages
                     </a>
                     <span class="msg-counter">7</span>
                 </li>
-            </ul>
+            {{-- </ul>
             <span class="system-menu__title">system</span>
             <ul class="sidebar-body-menu">
                 <li>
@@ -158,7 +158,7 @@
                 <li>
                     <a href="##"><span class="icon setting" aria-hidden="true"></span>Settings</a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
     <div class="sidebar-footer">

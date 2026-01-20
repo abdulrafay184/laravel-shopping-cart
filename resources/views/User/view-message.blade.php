@@ -1,8 +1,8 @@
-@extends('User.Sidebar')
+@extends('Admin.Sidebar')
 
 @section('title', 'My Messages')
 
-@section('website')
+@section('admin')
 <div class="container mt-5">
     <h3 class="mb-4 text-center">My Messages</h3>
 
@@ -17,7 +17,7 @@
             <table class="table table-bordered table-striped table-hover align-middle">
                 <thead class="table-dark text-center">
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Subject</th>
                         <th>Message</th>
                         <th>Date</th>
