@@ -158,6 +158,63 @@
       0%,100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
+    /* ===== RESPONSIVE WRAPPER FIX ===== */
+.wrapper {
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+}
+
+/* ===== INPUT RESPONSIVE FIX ===== */
+.input-box input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 52px;
+}
+
+/* ===== ICON PERFECT ALIGNMENT ===== */
+.input-box i {
+  pointer-events: none;
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 576px) {
+  .wrapper {
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .input-box input {
+    font-size: 14px;
+    padding: 12px 42px 12px 14px;
+    min-height: 48px;
+  }
+
+  .remember-forgot {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px 0;
+  }
+}
+
+/* ===== LARGE SCREENS SMOOTH LOOK ===== */
+@media (min-width: 992px) {
+  .wrapper {
+    max-width: 450px;
+  }
+}
+
   </style>
 </head>
 

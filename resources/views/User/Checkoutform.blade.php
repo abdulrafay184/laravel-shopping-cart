@@ -161,6 +161,52 @@
             50%{box-shadow:0 0 28px rgba(0,123,255,.7)}
             100%{box-shadow:0 0 0 rgba(0,123,255,.4)}
         }
+
+        /* ===== FORM WIDTH SLIGHTLY INCREASE ===== */
+form {
+    width: 100%;
+}
+
+/* ===== INPUT & SELECT RESPONSIVENESS FIX ===== */
+.animated-input {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+}
+
+/* ===== PAYMENT SELECT FIX ===== */
+select.animated-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #ffffff;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #007bff 50%),
+        linear-gradient(135deg, #007bff 50%, transparent 50%);
+    background-position:
+        calc(100% - 20px) calc(1em + 6px),
+        calc(100% - 15px) calc(1em + 6px);
+    background-size:
+        5px 5px,
+        5px 5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+/* ===== MOBILE PERFECT FIX ===== */
+@media (max-width: 576px) {
+    form {
+        padding: 28px 20px;
+    }
+
+    .animated-input {
+        font-size: 14px;
+        min-height: 50px;
+    }
+}
+
         </style>
 
     </div>

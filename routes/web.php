@@ -143,4 +143,4 @@ Route::get('/logout', function () {
 // User checkouts
 Route::get('/user>chekout',[CheckoutsController::class,'usercheckouts'])->name('checkouts');
 Route::post('/userCheckouts', [CheckoutsController::class,'usercheckoutsconfirm'])->name('checkoutconfirm');
-Route::post('/checkoutsFatch',[CheckoutsController::class,'fatchcheckout'])->name('fatchcheckout');
+Route::get('/checkoutsFatch',[CheckoutsController::class,'fatchcheckout'])->name('fatchcheckout');

@@ -40,8 +40,9 @@ class CheckoutsController extends Controller
          }
 
 
-    function fatcheckouts(){
-        return view('Admin.CheckoutsFatch');
+    function fatchcheckout(){
+        $checkout=Checkout::all();
+        return view('Admin.CheckoutsFatch',['allcheckouts'=>$checkout]);
     }
 
 }
