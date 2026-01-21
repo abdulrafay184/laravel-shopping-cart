@@ -146,7 +146,10 @@ Route::post('/logout', function () {
 Route::get('/user>chekout',[CheckoutsController::class,'usercheckouts'])->name('checkouts');
 
 
-
+//checkout
 Route::post('/userCheckouts', [CheckoutsController::class,'usercheckoutsconfirm'])->name('checkoutconfirm');
 Route::get('/checkoutsFatch',[CheckoutsController::class,'fatchcheckout'])->name('fatchcheckout');
 
+//search
+Route::get('/search', [ProductsController::class, 'search'])->name('search');
+    

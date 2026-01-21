@@ -179,40 +179,6 @@
 .card-product:hover .card-product__title a {
   animation: textGlow 1.2s infinite alternate;
 }
-.search-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-icon {
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.search-form {
-    position: absolute;
-    right: 25px;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: all 0.3s ease;
-}
-
-.search-input {
-    width: 160px;
-    padding: 6px 10px;
-    font-size: 13px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-}
-
-/* ACTIVE STATE */
-.search-wrapper.active .search-form {
-    opacity: 1;
-    transform: scaleX(1);
-}
 
 @keyframes textGlow {
   from { text-shadow: 0 0 2px #00ff00; }
@@ -280,21 +246,33 @@
               <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
             </ul>
 
-<li class="nav-item search-wrapper">
-    <i class="ti-search search-icon"></i>
-
-    <form action="{{ route('search') }}" method="GET" class="search-form">
-        <input type="text"
-               name="q"
-               placeholder="Search products..."
-               class="search-input"
-               autocomplete="off">
-    </form>
-</li>
 
             <ul class="nav-shop">
-              
-              
+             
+            
+            <li class="nav-item"><button><i class="ti-search"></i></button></li>
+
+            <ul class="card-product__imgOverlay">
+    <!-- Product Details / View -->
+    <li>
+        <a href="{{ route('product.details', $product->id) }}">
+            <i class="ti-search"></i>
+        </a>
+    </li>
+
+    <!-- Add to Cart -->
+    <li>
+        <a href="{{ route('cart.add', $product->id) }}">
+            <i class="ti-shopping-cart"></i>
+        </a>
+    </li>
+
+    <!-- Wishlist / Heart (unchanged) -->
+    <li>
+        <button><i class="ti-heart"></i></button>
+    </li>
+</ul>
+
               <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
             </ul>
@@ -514,24 +492,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="user/assets/vendors/jquery.ajaxchimp.min.js"></script>
   <script src="user/assets/vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const searchIcon = document.querySelector('.search-icon');
-    const searchWrapper = document.querySelector('.search-wrapper');
-    const searchInput = document.querySelector('.search-input');
-
-    searchIcon.addEventListener('click', function () {
-        searchWrapper.classList.toggle('active');
-        searchInput.focus();
-    });
-
-    document.addEventListener('click', function (e) {
-        if (!searchWrapper.contains(e.target)) {
-            searchWrapper.classList.remove('active');
-        }
-    });
-});
-</script>
-
 </body>
 </html>

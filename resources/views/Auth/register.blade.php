@@ -233,7 +233,7 @@
       </div>
 
       <div class="input-box">
-        <input type="text" placeholder="User email" name="email"/>
+        <input type="text" placeholder="User email" name="mail"/>
         <i class='bx bxs-user'></i>
         @error('email')
           <p style="color:red;">{{$message}}</p>

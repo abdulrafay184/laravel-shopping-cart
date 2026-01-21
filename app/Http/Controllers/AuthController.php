@@ -1,58 +1,68 @@
 <?php
 
 namespace App\Http\Controllers;
-use  App\Models\User;
+
+use App\Mail\welcomemail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    function registerpage(){
+    public function registerpage()
+    {
         return view('Auth.register');
     }
 
-    function loginpage(){
+    public function loginpage()
+    {
         return view('Auth.login');
     }
 
-    function userregister(Request $req){
-
-        $data=$req->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email',
-            'password'=>'required',
-
+    // ================= REGISTER =================
+    public function userregister(Request $req)
+    {
+        $data = $req->validate([
+            'name' => 'required',
+            'mail' => 'required|email|unique:users,mail',
+            'password' => 'required|min:6',
         ]);
 
 
-        $user=user::create($data);
+    $message="Laadlyyy Shopping krne Aya hyyy!!";
+    $subject="User Registration Detail";
+    Mail::to($req->email)->send(new welcomemail($message,$subject));
 
-        if($user){
-            return redirect()->route('loginpage')->with('success','User Account Created..');
-        }
-        else{
-            return 'User not Inserted';
-        }
+        $data['password'] = bcrypt($data['password']);
+        $data['role'] = 'user';
+
+        User::create($data);
+
+        return redirect()->route('loginpage')
+            ->with('success', 'Account created successfully');
     }
 
-    function userlogin(Request $req){
-         $logindetail = $req->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
+    
 
-    if (Auth::attempt($logindetail)) {
-        $req->session()->regenerate(); // security best practice
 
-        if (Auth::user()->role === 'Admin') {
-            return redirect()->route('admin.index');
-        } else {
+
+
+    // ================= LOGIN =================
+    public function userlogin(Request $req)
+    {
+        $credentials = $req->validate([
+            'mail' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $req->session()->regenerate();
             return redirect()->route('userindex');
         }
-    }
 
-
+        return back()->withErrors([
+            'mail' => 'Invalid email or password'
+        ]);
     }
 }
-

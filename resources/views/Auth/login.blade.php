@@ -203,7 +203,7 @@
         @endif
 
         <div class="inputBx">
-          <input type="text" placeholder="Usermail" name='email'>
+          <input type="text" placeholder="Usermail" name='mail'>
           @error('email')
             <p style='color:red;'>{{ $message }}</p>
           @enderror

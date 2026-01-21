@@ -35,7 +35,7 @@ class ProductsController extends Controller
         $product->Price = $data['Price'];
         $product->Description = $data['Description'];
         $product->Quantity = $data['Quantity'];
-        $product->Categary = $data['Category']; // spelling fix
+        $product->Categary = $data['Category'];
         $product->Status = $data['Status'];
         $product->pic = $path;
         $product->save();
@@ -69,24 +69,26 @@ class ProductsController extends Controller
         return view('User.product_detail', compact('product'));
     }
 
-    // Place Order Page
-
-
     // Category Products Page
     public function categoryProducts($category){
         $products = Product::where('Categary', $category)->get();
         return view('User.category_products', compact('products', 'category'));
     }
+
+    // ================= SEARCH =================
+public function search(Request $request){
+    $query = $request->input('q');
+
+    // Search in Name or Category
+    $products = Product::where('Name', 'LIKE', "%{$query}%")
+        ->orWhere('Categary', 'LIKE', "%{$query}%")
+        ->get();
+
+    // Pass always products collection to view
+    return view('User.search-results', [
+        'products' => $products,
+        'query' => $query,
+    ]);
 }
 
-// Category Products
- function categoryProducts($category){
-    $products = Product::where('Categary', $category)->get();
-    return view('User.category_products', compact('products', 'category'));
-}
-
-// Product Detail
- function show($id){
-    $product = Product::findOrFail($id);
-    return view('User.product_detail', compact('product'));
 }
