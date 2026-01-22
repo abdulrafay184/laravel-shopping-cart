@@ -79,9 +79,47 @@
               <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
             </ul>
 
-            <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+           <ul class="nav-shop">
+    <li class="nav-item">
+        <button><i class="ti-search"></i></button>
+    </li>
+
+    {{-- Message / Reply Notification --}}
+    @auth
+    <li class="nav-item">
+        <a href="{{ route('user.messages') }}" class="btn position-relative">
+            <i class="ti-email"></i>
+
+            @if($unreadReplies > 0)
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ $unreadReplies }}
+                </span>
+            @endif
+        </a>
+    </li>
+    @endauth
+
+    {{-- Cart --}}
+    @if(Auth::check())
+    <li class="nav-item">
+        <a href="{{ route('cart.index') }}" class="btn position-relative">
+            <i class="ti-shopping-cart"></i>
+
+            @if(session()->has('cart') && count(session('cart')) > 0)
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ count(session('cart')) }}
+                </span>
+            @endif
+        </a>
+    </li>
+    @endif
+
+    <li class="nav-item">
+        <a class="button button-header" href="#">Buy Now</a>
+    </li>
+</ul>
+
+
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
             </ul>
           </div>

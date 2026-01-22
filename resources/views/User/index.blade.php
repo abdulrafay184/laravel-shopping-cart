@@ -214,6 +214,52 @@
     transform: scaleX(1);
 }
 
+
+.cart-hover {
+    position: relative;
+}
+
+.mini-cart {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 280px;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: none;
+    z-index: 999;
+}
+
+.cart-hover:hover .mini-cart {
+    display: block;
+}
+
+.mini-cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mini-cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.mini-cart-item h6 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.mini-cart-item small {
+    color: #777;
+}
+
+
 @keyframes textGlow {
   from { text-shadow: 0 0 2px #00ff00; }
   to { text-shadow: 0 0 12px #00ff00, 0 0 20px #00ff00; }
@@ -294,8 +340,51 @@
 
             <ul class="nav-shop">
               
-              
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
+             @if(Auth::check())
+<li class="nav-item cart-hover position-relative">
+
+    <a href="{{ route('cart.index') }}" class="btn position-relative">
+        <i class="ti-shopping-cart"></i>
+
+        @if(session()->has('cart') && count(session('cart')) > 0)
+            <span class="nav-shop__circle">
+                {{ count(session('cart')) }}
+            </span>
+        @endif
+    </a>
+
+    <!-- MINI CART DROPDOWN -->
+    <div class="mini-cart">
+        @if(session()->has('cart') && count(session('cart')) > 0)
+            @php $total = 0; @endphp
+
+            @foreach(session('cart') as $id => $item)
+                @php $total += $item['price'] * $item['quantity']; @endphp
+
+                <div class="mini-cart-item">
+                    <img src="{{ asset('storage/'.$item['image']) }}" alt="">
+                    <div>
+                        <h6>{{ $item['name'] }}</h6>
+                        <small>{{ $item['quantity'] }} × Rs {{ $item['price'] }}</small>
+                    </div>
+                </div>
+            @endforeach
+
+            <hr>
+            <p class="text-end fw-bold">Total: Rs {{ $total }}</p>
+
+            <a href="{{ route('cart.index') }}" class="btn btn-dark btn-sm w-100">
+                View Cart
+            </a>
+        @else
+            <p class="text-center text-muted m-0">Cart is empty</p>
+        @endif
+    </div>
+</li>
+@endif
+
+ 
+             
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
             </ul>
           </div>

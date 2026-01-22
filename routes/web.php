@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
@@ -153,3 +154,37 @@ Route::get('/checkoutsFatch',[CheckoutsController::class,'fatchcheckout'])->name
 //search
 Route::get('/search', [ProductsController::class, 'search'])->name('search');
     
+//shop
+Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.detail');
+
+//cart
+
+   Route::middleware('auth')->group(function() {
+    Route::post('/add-to-cart/{id}', [CartController::class, 'add'])->name('add.to.cart');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+});     
+
+
+
+// USER
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/my-messages', [ContactController::class, 'myMessages'])
+    ->name('user.messages')
+    ->middleware('auth');
+Route::get('/my-messages/{id}', [ContactController::class, 'showUserMessage'])
+    ->name('user.message.view')
+    ->middleware('auth');
+
+// ADMIN
+Route::get('/admin/contacts', [ContactController::class, 'adminMessages'])
+    ->name('admin.contacts');
+Route::get('/admin/contact/reply/{id}', [ContactController::class, 'replyForm'])
+    ->name('admin.contact.reply');
+Route::post('/admin/contact/reply/{id}', [ContactController::class, 'sendReply'])
+    ->name('admin.contact.sendReply');
+Route::delete('/admin/contact/{id}', [ContactController::class, 'deleteMessage'])
+    ->name('admin.contact.delete');

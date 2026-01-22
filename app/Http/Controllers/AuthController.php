@@ -2,57 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\welcomemail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 class AuthController extends Controller
 {
-    public function registerpage()
+    // Register Page
+    public function registerPage()
     {
         return view('Auth.register');
     }
 
-    public function loginpage()
+    // Login Page
+    public function loginPage()
     {
         return view('Auth.login');
     }
 
-    // ================= REGISTER =================
-    public function userregister(Request $req)
+    // Register User
+    public function userRegister(Request $req)
     {
         $data = $req->validate([
             'name' => 'required',
-            'mail' => 'required|email|unique:users,mail',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ]);
 
+        // $data['role'] = 'user';
 
-    $message="Laadlyyy Shopping krne Aya hyyy!!";
-    $subject="User Registration Detail";
-    Mail::to($req->email)->send(new welcomemail($message,$subject));
-
-        $data['password'] = bcrypt($data['password']);
-        $data['role'] = 'user';
-
+        // Password auto-hash
         User::create($data);
 
-        return redirect()->route('loginpage')
-            ->with('success', 'Account created successfully');
+        return redirect()->route('loginpage')->with('success', 'Account created successfully');
     }
 
-    
-
-
-
-
-    // ================= LOGIN =================
-    public function userlogin(Request $req)
+    // User Login
+    public function userLogin(Request $req)
     {
         $credentials = $req->validate([
-            'mail' => 'required|email',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 
@@ -62,7 +53,16 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'mail' => 'Invalid email or password'
+            'email' => 'Invalid email or password'
         ]);
+    }
+
+    // Logout
+    public function logout(Request $req)
+    {
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        return redirect()->route('loginpage');
     }
 }

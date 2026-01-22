@@ -202,12 +202,19 @@
         </div>
         @endif
 
-        <div class="inputBx">
-          <input type="text" placeholder="Usermail" name='mail'>
+        <!-- <div class="inputBx">
+          <input type="email" placeholder="email" name='email'>
           @error('email')
             <p style='color:red;'>{{ $message }}</p>
           @enderror
-        </div>
+        </div> -->
+        <div class="inputBx">
+  <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+  @error('email')
+    <p style="color:red">{{ $message }}</p>
+  @enderror
+</div>
+
 
         <div class="inputBx">
           <input type="password" placeholder="Password" name='password'>

@@ -205,6 +205,39 @@
         <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
         <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
       </button>
+
+<div class="notification-wrapper">
+    <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
+      <span class="sr-only">To messages</span>
+      <span class="icon notification active" aria-hidden="true"></span>
+      @if($unreadReplies > 0)
+        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+          {{ $unreadReplies }}
+        </span>
+      @endif
+    </button>
+    <ul class="users-item-dropdown notification-dropdown dropdown">
+      <li>
+        <a href="{{ route('adminreply') }}">
+          <div class="notification-dropdown-icon info">
+            <i data-feather="mail"></i>
+          </div>
+          <div class="notification-dropdown-text">
+            <span class="notification-dropdown__title">
+              You have {{ $unreadReplies }} unread replies
+            </span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="link-to-page" href="{{ route('adminreply') }}">Go to Messages</a>
+      </li>
+    </ul>
+</div>
+
+
+
+
       <div class="notification-wrapper">
         <button class="gray-circle-btn dropdown-btn" title="To messages" type="button">
           <span class="sr-only">To messages</span>

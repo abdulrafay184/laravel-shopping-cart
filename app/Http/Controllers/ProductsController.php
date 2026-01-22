@@ -9,12 +9,12 @@ class ProductsController extends Controller
 {
     // ================= ADMIN =================
 
-    // Show Insert Product Form
+    // Show insert product page
     public function insert(){
         return view('Admin.insertproducts');
     }
 
-    // Insert Product
+    // Insert product
     public function insertProducts(Request $req){
         $data = $req->validate([
             'Name' => 'required',
@@ -26,7 +26,6 @@ class ProductsController extends Controller
             'Image' => 'required|image|mimes:jpg,jpeg,png,gif',
         ]);
 
-        // Upload image
         $file = $req->file('Image')->store("Products", "public");
         $path = basename($file);
 
@@ -35,60 +34,75 @@ class ProductsController extends Controller
         $product->Price = $data['Price'];
         $product->Description = $data['Description'];
         $product->Quantity = $data['Quantity'];
-        $product->Categary = $data['Category'];
+        $product->category = $data['Category']; // Make sure column exists in DB
         $product->Status = $data['Status'];
         $product->pic = $path;
         $product->save();
 
-        return redirect()->route('fatchProducts')->with('success', 'Product inserted successfully.');
+        return redirect()->route('fatchProducts')
+            ->with('success', 'Product inserted successfully.');
     }
 
-    // Fetch All Products (Admin)
+    // Fetch all products for admin
     public function FatchProducts(){
         $fatch = Product::all();
         return view('Admin.FatchProducts', compact("fatch"));
     }
 
-    // Delete Product
+    // Delete product
     public function deleteProduct($id){
         Product::destroy($id);
-        return redirect()->route('fatchProducts')->with('success', 'Product deleted successfully.');
+        return redirect()->route('fatchProducts')
+            ->with('success', 'Product deleted successfully.');
     }
 
-    // ================= HOME / USER =================
+    // ================= USER =================
 
-    // Home Page: Latest 6 products
+    // Home page - show latest 6 products
     public function index(){
         $products = Product::latest()->take(6)->get();
         return view('index', compact('products'));
     }
 
-    // Product Detail Page
+    // Shop page with search and optional category filter
+    public function shop(Request $request)
+    {
+        $products = Product::when($request->q, function ($query) use ($request) {
+                $query->where('Name', 'like', '%' . $request->q . '%');
+            })
+            ->when($request->category, function ($query) use ($request) {
+                $query->where('category', $request->category);
+            })
+            ->paginate(8);
+
+        return view('user.shop', compact('products'));
+    }
+
+    // Product detail page
     public function show($id){
         $product = Product::findOrFail($id);
         return view('User.product_detail', compact('product'));
     }
 
-    // Category Products Page
+    // Category wise products page
     public function categoryProducts($category){
-        $products = Product::where('Categary', $category)->get();
+        $products = Product::where('category', $category)->get();
         return view('User.category_products', compact('products', 'category'));
     }
 
-    // ================= SEARCH =================
-public function search(Request $request){
-    $query = $request->input('q');
+    // Search page
+    public function search(Request $request)
+    {
+        $query = $request->q;
 
-    // Search in Name or Category
-    $products = Product::where('Name', 'LIKE', "%{$query}%")
-        ->orWhere('Categary', 'LIKE', "%{$query}%")
-        ->get();
+        if (!$query) {
+            // If user didn't type anything, return empty collection
+            $products = collect(); 
+        } else {
+            // Only search by Name (no category column in DB)
+            $products = Product::where('Name', 'LIKE', "%{$query}%")->get();
+        }
 
-    // Pass always products collection to view
-    return view('User.search-results', [
-        'products' => $products,
-        'query' => $query,
-    ]);
-}
-
+        return view('User.search-results', compact('products', 'query'));
+    }
 }
