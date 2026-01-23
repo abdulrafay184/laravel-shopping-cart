@@ -17,43 +17,157 @@
 
 <style>
 /* ================= ELITE VIP GREEN GLASS PRODUCT CARD ================= */
-.card-product { position: relative; border-radius: 25px; overflow: hidden; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(14px) saturate(160%) hue-rotate(90deg); border: 1px solid rgba(0,128,0,0.25); box-shadow: 0 15px 40px rgba(0,128,0,0.25); transition: all 0.8s cubic-bezier(.19,1,.22,1); }
-.card-product:hover { transform: translateY(-15px) scale(1.06) rotate(-1deg); box-shadow: 0 35px 80px rgba(0,255,0,0.35); }
-.card-product__img img { border-radius: 20px; width: 100%; height: 250px; object-fit: cover; transition: transform 1s cubic-bezier(.19,1,.22,1), filter 0.6s ease, box-shadow 0.6s ease; }
-.card-product:hover .card-product__img img { transform: scale(1.2) rotate(-1deg); filter: brightness(1.1) contrast(1.05) hue-rotate(20deg); box-shadow: 0 15px 45px rgba(0,255,0,0.25); }
-.card-product::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(0,255,0,0.2), transparent 70%); transform: translateX(-120%); transition: 1s ease; }
-.card-product:hover::before { transform: translateX(120%); }
-.card-product__imgOverlay { background: rgba(255,255,255,0.2); transition: background 0.4s ease; }
-.card-product__imgOverlay i { background: radial-gradient(circle,#00ff00,#006400); color: #000; padding: 14px; border-radius: 50%; transition: transform 0.4s ease, box-shadow 0.4s ease; }
-.card-product__imgOverlay i:hover { transform: scale(1.3) rotate(15deg); box-shadow: 0 5px 20px rgba(0,255,0,0.45); }
-.card-slider { position: absolute; inset: 0; background: rgba(255,255,255,0.25); backdrop-filter: blur(16px) saturate(160%) hue-rotate(90deg); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; transform: translateY(100%); transition: transform 0.75s cubic-bezier(.19,1,.22,1); padding: 26px; }
-.card-product:hover .card-slider { transform: translateY(0); }
-.card-slider > * { opacity: 0; transform: translateY(25px); transition: all 0.6s ease; }
-.card-product:hover .card-slider > * { opacity: 1; transform: translateY(0); }
+.card-product { 
+    position: relative; 
+    border-radius: 25px; 
+    overflow: hidden; 
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(14px) saturate(160%) hue-rotate(200deg); /* blue hue */ 
+    border: 1px solid rgba(0,0,128,0.25); 
+    box-shadow: 0 15px 40px rgba(0,0,128,0.25); 
+    transition: all 0.8s cubic-bezier(.19,1,.22,1); 
+}
+
+.card-product:hover { 
+    transform: translateY(-15px) scale(1.06) rotate(-1deg); 
+    box-shadow: 0 35px 80px rgba(0,0,255,0.35); 
+}
+
+.card-product__img img { 
+    border-radius: 20px; 
+    width: 100%; 
+    height: 250px; 
+    object-fit: cover; 
+    transition: transform 1s cubic-bezier(.19,1,.22,1), filter 0.6s ease, box-shadow 0.6s ease; 
+}
+
+.card-product:hover .card-product__img img { 
+    transform: scale(1.2) rotate(-1deg); 
+    filter: brightness(1.1) contrast(1.05) hue-rotate(220deg); 
+    box-shadow: 0 15px 45px rgba(0,0,255,0.25); 
+}
+
+.card-product::before { 
+    content: ""; 
+    position: absolute; 
+    inset: 0; 
+    background: linear-gradient(120deg, transparent 30%, rgba(0,0,255,0.2), transparent 70%); 
+    transform: translateX(-120%); 
+    transition: 1s ease; 
+}
+
+.card-product:hover::before { 
+    transform: translateX(120%); 
+}
+
+.card-product__imgOverlay { 
+    background: rgba(255,255,255,0.2); 
+    transition: background 0.4s ease; 
+}
+
+.card-product__imgOverlay i { 
+    background: radial-gradient(circle,#00f,#003399); 
+    color: #fff; 
+    padding: 14px; 
+    border-radius: 50%; 
+    transition: transform 0.4s ease, box-shadow 0.4s ease; 
+}
+
+.card-product__imgOverlay i:hover { 
+    transform: scale(1.3) rotate(15deg); 
+    box-shadow: 0 5px 20px rgba(0,0,255,0.45); 
+}
+
+.card-slider { 
+    position: absolute; 
+    inset: 0; 
+    background: rgba(255,255,255,0.25); 
+    backdrop-filter: blur(16px) saturate(160%) hue-rotate(200deg); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    transform: translateY(100%); 
+    transition: transform 0.75s cubic-bezier(.19,1,.22,1); 
+    padding: 26px; 
+}
+
+.card-product:hover .card-slider { 
+    transform: translateY(0); 
+}
+
+.card-slider > * { 
+    opacity: 0; 
+    transform: translateY(25px); 
+    transition: all 0.6s ease; 
+}
+
+.card-product:hover .card-slider > * { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
 .card-product:hover .card-slider > *:nth-child(1){transition-delay:.1s}
 .card-product:hover .card-slider > *:nth-child(2){transition-delay:.2s}
 .card-product:hover .card-slider > *:nth-child(3){transition-delay:.3s}
 .card-product:hover .card-slider > *:nth-child(4){transition-delay:.4s}
-.card-body p, .slider-category { font-family: 'Inter', sans-serif; color: #000; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
-.card-product__title a, .slider-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #006400; letter-spacing: 0.6px; text-decoration: none; }
-.card-product__title a:hover, .slider-title:hover { color: #00ff00; }
-.card-product__price, .slider-price { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #00ff00; }
-.slider-btn, .card-body .btn { font-family: 'Inter', sans-serif; font-weight: 700; background: linear-gradient(135deg,#006400,#00ff00); color: #fff; border-radius: 30px; padding: 10px 28px; border: none; text-decoration: none; transition: all 0.35s ease; }
-.slider-btn:hover, .card-body .btn:hover { transform: scale(1.15) rotate(-1deg); box-shadow: 0 10px 25px rgba(0,255,0,0.45); }
-.card-product:hover .card-product__title a { animation: textGlow 1.2s infinite alternate; }
-.search-wrapper { position: relative; display: flex; align-items: center; }
-.search-icon { font-size: 18px; cursor: pointer; }
-.search-form { position: absolute; right: 25px; opacity: 0; transform: scaleX(0); transform-origin: right; transition: all 0.3s ease; }
-.search-input { width: 160px; padding: 6px 10px; font-size: 13px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
-.search-wrapper.active .search-form { opacity: 1; transform: scaleX(1); }
-.cart-hover { position: relative; }
-.mini-cart { position: absolute; top: 45px; right: 0; width: 280px; background: #fff; border: 1px solid #eee; padding: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: none; z-index: 999; }
-.cart-hover:hover .mini-cart { display: block; }
-.mini-cart-item { display: flex; align-items: center; margin-bottom: 10px; }
-.mini-cart-item img { width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 5px; }
-.mini-cart-item h6 { font-size: 14px; margin: 0; }
-.mini-cart-item small { color: #777; }
-@keyframes textGlow { from { text-shadow: 0 0 2px #00ff00; } to { text-shadow: 0 0 12px #00ff00, 0 0 20px #00ff00; } }
+
+.card-body p, .slider-category { 
+    font-family: 'Inter', sans-serif; 
+    color: #003366; 
+    font-size: 12px; 
+    letter-spacing: 1px; 
+    text-transform: uppercase; 
+}
+
+.card-product__title a, .slider-title { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 18px; 
+    font-weight: 700; 
+    color: #003366; 
+    letter-spacing: 0.6px; 
+    text-decoration: none; 
+}
+
+.card-product__title a:hover, .slider-title:hover { 
+    color: #00f; 
+}
+
+.card-product__price, .slider-price { 
+    font-family: 'Inter', sans-serif; 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #00f; 
+}
+
+.slider-btn, .card-body .btn { 
+    font-family: 'Inter', sans-serif; 
+    font-weight: 700; 
+    background: linear-gradient(135deg,#003399,#00f); 
+    color: #fff; 
+    border-radius: 30px; 
+    padding: 10px 28px; 
+    border: none; 
+    text-decoration: none; 
+    transition: all 0.35s ease; 
+}
+
+.slider-btn:hover, .card-body .btn:hover { 
+    transform: scale(1.15) rotate(-1deg); 
+    box-shadow: 0 10px 25px rgba(0,0,255,0.45); 
+}
+
+.card-product:hover .card-product__title a { 
+    animation: textGlow 1.2s infinite alternate; 
+}
+
+@keyframes textGlow { 
+    from { text-shadow:0 0 2px #00f;} 
+    to { text-shadow:0 0 12px #00f,0 0 20px #00f;} 
+}
+
+@keyframes textGlow { from { text-shadow: 0 0 2px #06277d; } to { text-shadow: 0 0 12px #06277d, 0 0 20px #06277d; } }
 </style>
 </head>
 <body>
@@ -213,37 +327,122 @@
 </section>
 <!--================ Trending Product Section End =================-->
 
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="container">
+    <h2>Subscribe for Offers</h2>
+    <p>Get exclusive discounts & latest updates</p>
+    <form class="mt-4">
+      <input type="email" placeholder="Your Email">
+      <button>Subscribe</button>
+    </form>
+  </div>
+</section>
 <!--================ Footer =================-->
-<footer class="footer">
-  <!-- Footer content unchanged -->
-</footer>
 
-<script src="user/assets/vendors/jquery/jquery-3.2.1.min.js"></script>
-<script src="user/assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="user/assets/vendors/skrollr.min.js"></script>
-<script src="user/assets/vendors/owl-carousel/owl.carousel.min.js"></script>
-<script src="user/assets/vendors/nice-select/jquery.nice-select.min.js"></script>
-<script src="user/assets/vendors/jquery.ajaxchimp.min.js"></script>
-<script src="user/assets/vendors/mail-script.js"></script>
-<script src="js/main.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const searchIcon = document.querySelector('.search-icon');
-    const searchWrapper = document.querySelector('.search-wrapper');
-    const searchInput = document.querySelector('.search-input');
+	<footer class="footer">
+		<div class="footer-area">
+			<div class="container">
+				<div class="row section_gap">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title large_title">Our Mission</h4>
+							<p>
+								So seed seed green that winged cattle in. Gathering thing made fly you're no
+								divided deep moved us lan Gathering thing us land years living.
+							</p>
+							<p>
+								So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+							</p>
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Quick Links</h4>
+							<ul class="list">
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Shop</a></li>
+								<li><a href="{{ route('blog.index') }}">Blog</a></li>
+								<li><a href="#">Product</a></li>
+								<li><a href="#">Brand</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget instafeed">
+							<h4 class="footer_title">Gallery</h4>
+							<ul class="list instafeed d-flex flex-wrap">
+								<li><img src="img/gallery/r1.jpg" alt=""></li>
+								<li><img src="img/gallery/r2.jpg" alt=""></li>
+								<li><img src="img/gallery/r3.jpg" alt=""></li>
+								<li><img src="img/gallery/r5.jpg" alt=""></li>
+								<li><img src="img/gallery/r7.jpg" alt=""></li>
+								<li><img src="img/gallery/r8.jpg" alt=""></li>
+							</ul>
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Contact Us</h4>
+							<div class="ml-40">
+								<p class="sm-head">
+									<span class="fa fa-location-arrow"></span>
+									Head Office
+								</p>
+								<p>123, Main Street, Your City</p>
 
-    searchIcon.addEventListener('click', function () {
-        searchWrapper.classList.toggle('active');
-        searchInput.focus();
-    });
+								<p class="sm-head">
+									<span class="fa fa-phone"></span>
+									Phone Number
+								</p>
+								<p>
+									+123 456 7890 <br>
+									+123 456 7890
+								</p>
 
-    document.addEventListener('click', function (e) {
-        if (!searchWrapper.contains(e.target)) {
-            searchWrapper.classList.remove('active');
-        }
-    });
-});
-</script>
+								<p class="sm-head">
+									<span class="fa fa-envelope"></span>
+									Email
+								</p>
+								<p>
+									free@infoexample.com <br>
+									www.infoexample.com
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row d-flex">
+					<p class="col-lg-12 footer-text text-center">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--================ End footer Area  =================-->
+
+
+
+  <script src="{{ asset('user/assets/vendors/jquery/jquery-3.2.1.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/bootstrap/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/skrollr.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/nice-select/jquery.nice-select.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/jquery.ajaxchimp.min.js') }}"></script>
+  <script src="{{ asset('user/assets/vendors/mail-script.js') }}"></script>
+  <script src="{{ asset('user/assets/js/main.js') }}"></script>
+
+
+
+
 
 </body>
 </html>
