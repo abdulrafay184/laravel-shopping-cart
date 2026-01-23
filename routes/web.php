@@ -188,3 +188,24 @@ Route::post('/admin/contact/reply/{id}', [ContactController::class, 'sendReply']
     ->name('admin.contact.sendReply');
 Route::delete('/admin/contact/{id}', [ContactController::class, 'deleteMessage'])
     ->name('admin.contact.delete');
+
+
+   //contact msg 
+Route::get('/admin/contacts', [ContactController::class, 'adminMessages'])
+    ->name('admin.contacts');
+
+Route::get('/admin/contacts/reply/{id}', [ContactController::class, 'replyForm'])
+    ->name('admin.contacts.reply');
+
+Route::post('/admin/contacts/reply/{id}', [ContactController::class, 'sendReply'])
+    ->name('admin.contacts.sendReply');
+//
+    Route::get('/product/{id}', [ProductsController::class, 'show'])
+    ->name('product.details');
+//shop page
+    Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
+
+    Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
+
+    Route::post('/admin/product/insert', [ProductsController::class, 'insertProducts'])
+    ->name('insertProducts');

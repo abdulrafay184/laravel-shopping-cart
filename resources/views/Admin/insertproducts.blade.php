@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 text-center mt-3"></div>
 
-        <form action="{{ route('insert') }}" method="post"
+        <form action="{{ route('insertProducts') }}" method="post" enctype="multipart/form-data"
         style="
             max-width:720px;
             margin:50px auto;
@@ -113,6 +113,25 @@
                 </select>
             </div>
         </div>
+
+        <div class="row mb-4">
+    <div class="col-md-12 text-center">
+        <label style="
+            font-weight:600;
+            color:#007bff;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            font-size:16px;
+        ">
+            <input type="checkbox" name="show_in_home" value="1"
+                   style="width:20px;height:20px;">
+            ⭐ Show this product on <b>Home Page</b>
+        </label>
+    </div>
+</div>
+
 
         <div style="text-align:center; margin-top:30px;">
             <button type="submit" class="animated-btn">

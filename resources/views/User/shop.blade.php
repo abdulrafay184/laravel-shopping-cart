@@ -30,7 +30,7 @@
                         <div class="d-flex justify-content-between align-items-center mt-2">
                             <span class="fw-bold">Rs {{ $product->price }}</span>
                             <div class="d-flex">
-                                <a href="{{ route('product.detail', $product->id) }}" class="btn btn-sm btn-outline-dark me-1">View</a>
+                                <a href="{{ route('product.details', $product->id) }}" class="btn btn-sm btn-outline-dark me-1">View</a>
                                 <form action="{{ route('add.to.cart', $product->id) }}" method="POST">
                                     @csrf
                                     <button class="btn btn-sm btn-dark">Add to Cart</button>

@@ -10,33 +10,40 @@ class ProductsController extends Controller
     // ================= ADMIN =================
 
     // Show insert product page
-    public function insert(){
+    public function insert()
+    {
         return view('Admin.insertproducts');
     }
 
     // Insert product
-    public function insertProducts(Request $req){
+    public function insertProducts(Request $req)
+    {
+        // Validate input
         $data = $req->validate([
-            'Name' => 'required',
-            'Price' => 'required',
-            'Quantity' => 'required',
-            'Description' => 'required',
-            'Category' => 'required',
-            'Status' => 'required',
+            'Name' => 'required|string|max:255',
+            'Price' => 'required|numeric',
+            'Quantity' => 'required|integer',
+            'Description' => 'required|string',
+            'Category' => 'required|string|max:255',
+            'Status' => 'required|in:0,1',
             'Image' => 'required|image|mimes:jpg,jpeg,png,gif',
         ]);
 
+        // Upload image
         $file = $req->file('Image')->store("Products", "public");
         $path = basename($file);
 
+        // Create product
         $product = new Product();
         $product->Name = $data['Name'];
         $product->Price = $data['Price'];
-        $product->Description = $data['Description'];
         $product->Quantity = $data['Quantity'];
-        $product->category = $data['Category']; // Make sure column exists in DB
+        $product->Description = $data['Description'];
+        $product->category = $data['Category']; // DB column should be `category`
         $product->Status = $data['Status'];
-        $product->pic = $path;
+        $product->pic = $path;                 // DB column should be `pic`
+        $product->show_in_home = $req->has('show_in_home') ? 1 : 0; // ⭐ Home page option
+
         $product->save();
 
         return redirect()->route('fatchProducts')
@@ -44,13 +51,15 @@ class ProductsController extends Controller
     }
 
     // Fetch all products for admin
-    public function FatchProducts(){
+    public function fatchProducts()
+    {
         $fatch = Product::all();
         return view('Admin.FatchProducts', compact("fatch"));
     }
 
     // Delete product
-    public function deleteProduct($id){
+    public function deleteProduct($id)
+    {
         Product::destroy($id);
         return redirect()->route('fatchProducts')
             ->with('success', 'Product deleted successfully.');
@@ -58,16 +67,23 @@ class ProductsController extends Controller
 
     // ================= USER =================
 
-    // Home page - show latest 6 products
-    public function index(){
-        $products = Product::latest()->take(6)->get();
+    // Home page - show latest 6 products with show_in_home = 1
+    public function index()
+    {
+        $products = Product::where('show_in_home', 1)
+            ->where('Status', 1)
+            ->latest()
+            ->take(6)
+            ->get();
+
         return view('index', compact('products'));
     }
 
     // Shop page with search and optional category filter
     public function shop(Request $request)
     {
-        $products = Product::when($request->q, function ($query) use ($request) {
+        $products = Product::where('Status', 1)
+            ->when($request->q, function ($query) use ($request) {
                 $query->where('Name', 'like', '%' . $request->q . '%');
             })
             ->when($request->category, function ($query) use ($request) {
@@ -79,13 +95,15 @@ class ProductsController extends Controller
     }
 
     // Product detail page
-    public function show($id){
+    public function show($id)
+    {
         $product = Product::findOrFail($id);
-        return view('User.product_detail', compact('product'));
+        return view('product.details', compact('product'));
     }
 
     // Category wise products page
-    public function categoryProducts($category){
+    public function categoryProducts($category)
+    {
         $products = Product::where('category', $category)->get();
         return view('User.category_products', compact('products', 'category'));
     }
@@ -96,10 +114,8 @@ class ProductsController extends Controller
         $query = $request->q;
 
         if (!$query) {
-            // If user didn't type anything, return empty collection
-            $products = collect(); 
+            $products = collect(); // empty collection
         } else {
-            // Only search by Name (no category column in DB)
             $products = Product::where('Name', 'LIKE', "%{$query}%")->get();
         }
 
