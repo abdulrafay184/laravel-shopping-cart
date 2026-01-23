@@ -48,8 +48,13 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $req->session()->regenerate();
-            return redirect()->route('userindex');
+            if(Auth::user()->role=="Admin"){
+                return redirect()->route('admin.index');
+            }
+            else{
+                return redirect()->route('userindex');
+            }
+
         }
 
         return back()->withErrors([

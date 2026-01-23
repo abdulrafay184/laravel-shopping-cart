@@ -339,7 +339,7 @@
 </li>
 
             <ul class="nav-shop">
-              
+
              @if(Auth::check())
 <li class="nav-item cart-hover position-relative">
 
@@ -383,8 +383,8 @@
 </li>
 @endif
 
- 
-             
+
+
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
             </ul>
           </div>
