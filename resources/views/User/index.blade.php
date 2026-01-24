@@ -37,95 +37,95 @@
 }
 
 /* ================= ELITE VIP GREEN GLASS PRODUCT CARD ================= */
-.card-product { 
-    position: relative; 
-    border-radius: 25px; 
-    overflow: hidden; 
-    background: rgba(255, 255, 255, 0.3); 
-    backdrop-filter: blur(14px) saturate(160%) hue-rotate(200deg); /* blue hue */ 
-    border: 1px solid rgba(0,0,128,0.25); 
-    box-shadow: 0 15px 40px rgba(0,0,128,0.25); 
-    transition: all 0.8s cubic-bezier(.19,1,.22,1); 
+.card-product {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(14px) saturate(160%) hue-rotate(200deg); /* blue hue */
+    border: 1px solid rgba(0,0,128,0.25);
+    box-shadow: 0 15px 40px rgba(0,0,128,0.25);
+    transition: all 0.8s cubic-bezier(.19,1,.22,1);
 }
 
-.card-product:hover { 
-    transform: translateY(-15px) scale(1.06) rotate(-1deg); 
-    box-shadow: 0 35px 80px rgba(0,0,255,0.35); 
+.card-product:hover {
+    transform: translateY(-15px) scale(1.06) rotate(-1deg);
+    box-shadow: 0 35px 80px rgba(0,0,255,0.35);
 }
 
-.card-product__img img { 
-    border-radius: 20px; 
-    width: 100%; 
-    height: 250px; 
-    object-fit: cover; 
-    transition: transform 1s cubic-bezier(.19,1,.22,1), filter 0.6s ease, box-shadow 0.6s ease; 
+.card-product__img img {
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 1s cubic-bezier(.19,1,.22,1), filter 0.6s ease, box-shadow 0.6s ease;
 }
 
-.card-product:hover .card-product__img img { 
-    transform: scale(1.2) rotate(-1deg); 
-    filter: brightness(1.1) contrast(1.05) hue-rotate(220deg); 
-    box-shadow: 0 15px 45px rgba(0,0,255,0.25); 
+.card-product:hover .card-product__img img {
+    transform: scale(1.2) rotate(-1deg);
+    filter: brightness(1.1) contrast(1.05) hue-rotate(220deg);
+    box-shadow: 0 15px 45px rgba(0,0,255,0.25);
 }
 
-.card-product::before { 
-    content: ""; 
-    position: absolute; 
-    inset: 0; 
-    background: linear-gradient(120deg, transparent 30%, rgba(0,0,255,0.2), transparent 70%); 
-    transform: translateX(-120%); 
-    transition: 1s ease; 
+.card-product::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(0,0,255,0.2), transparent 70%);
+    transform: translateX(-120%);
+    transition: 1s ease;
 }
 
-.card-product:hover::before { 
-    transform: translateX(120%); 
+.card-product:hover::before {
+    transform: translateX(120%);
 }
 
-.card-product__imgOverlay { 
-    background: rgba(255,255,255,0.2); 
-    transition: background 0.4s ease; 
+.card-product__imgOverlay {
+    background: rgba(255,255,255,0.2);
+    transition: background 0.4s ease;
 }
 
-.card-product__imgOverlay i { 
-    background: radial-gradient(circle,#00f,#003399); 
-    color: #fff; 
-    padding: 14px; 
-    border-radius: 50%; 
-    transition: transform 0.4s ease, box-shadow 0.4s ease; 
+.card-product__imgOverlay i {
+    background: radial-gradient(circle,#00f,#003399);
+    color: #fff;
+    padding: 14px;
+    border-radius: 50%;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.card-product__imgOverlay i:hover { 
-    transform: scale(1.3) rotate(15deg); 
-    box-shadow: 0 5px 20px rgba(0,0,255,0.45); 
+.card-product__imgOverlay i:hover {
+    transform: scale(1.3) rotate(15deg);
+    box-shadow: 0 5px 20px rgba(0,0,255,0.45);
 }
 
-.card-slider { 
-    position: absolute; 
-    inset: 0; 
-    background: rgba(255,255,255,0.25); 
-    backdrop-filter: blur(16px) saturate(160%) hue-rotate(200deg); 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    transform: translateY(100%); 
-    transition: transform 0.75s cubic-bezier(.19,1,.22,1); 
-    padding: 26px; 
+.card-slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(16px) saturate(160%) hue-rotate(200deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.75s cubic-bezier(.19,1,.22,1);
+    padding: 26px;
 }
 
-.card-product:hover .card-slider { 
-    transform: translateY(0); 
+.card-product:hover .card-slider {
+    transform: translateY(0);
 }
 
-.card-slider > * { 
-    opacity: 0; 
-    transform: translateY(25px); 
-    transition: all 0.6s ease; 
+.card-slider > * {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.6s ease;
 }
 
-.card-product:hover .card-slider > * { 
-    opacity: 1; 
-    transform: translateY(0); 
+.card-product:hover .card-slider > * {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card-product:hover .card-slider > *:nth-child(1){transition-delay:.1s}
@@ -133,58 +133,58 @@
 .card-product:hover .card-slider > *:nth-child(3){transition-delay:.3s}
 .card-product:hover .card-slider > *:nth-child(4){transition-delay:.4s}
 
-.card-body p, .slider-category { 
-    font-family: 'Inter', sans-serif; 
-    color: #003366; 
-    font-size: 12px; 
-    letter-spacing: 1px; 
-    text-transform: uppercase; 
+.card-body p, .slider-category {
+    font-family: 'Inter', sans-serif;
+    color: #003366;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.card-product__title a, .slider-title { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 18px; 
-    font-weight: 700; 
-    color: #003366; 
-    letter-spacing: 0.6px; 
-    text-decoration: none; 
+.card-product__title a, .slider-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #003366;
+    letter-spacing: 0.6px;
+    text-decoration: none;
 }
 
-.card-product__title a:hover, .slider-title:hover { 
-    color: #00f; 
+.card-product__title a:hover, .slider-title:hover {
+    color: #00f;
 }
 
-.card-product__price, .slider-price { 
-    font-family: 'Inter', sans-serif; 
-    font-size: 20px; 
-    font-weight: 700; 
-    color: #00f; 
+.card-product__price, .slider-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #00f;
 }
 
-.slider-btn, .card-body .btn { 
-    font-family: 'Inter', sans-serif; 
-    font-weight: 700; 
-    background: linear-gradient(135deg,#003399,#00f); 
-    color: #fff; 
-    border-radius: 30px; 
-    padding: 10px 28px; 
-    border: none; 
-    text-decoration: none; 
-    transition: all 0.35s ease; 
+.slider-btn, .card-body .btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(135deg,#003399,#00f);
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 28px;
+    border: none;
+    text-decoration: none;
+    transition: all 0.35s ease;
 }
 
-.slider-btn:hover, .card-body .btn:hover { 
-    transform: scale(1.15) rotate(-1deg); 
-    box-shadow: 0 10px 25px rgba(0,0,255,0.45); 
+.slider-btn:hover, .card-body .btn:hover {
+    transform: scale(1.15) rotate(-1deg);
+    box-shadow: 0 10px 25px rgba(0,0,255,0.45);
 }
 
-.card-product:hover .card-product__title a { 
-    animation: textGlow 1.2s infinite alternate; 
+.card-product:hover .card-product__title a {
+    animation: textGlow 1.2s infinite alternate;
 }
 
-@keyframes textGlow { 
-    from { text-shadow:0 0 2px #00f;} 
-    to { text-shadow:0 0 12px #00f,0 0 20px #00f;} 
+@keyframes textGlow {
+    from { text-shadow:0 0 2px #00f;}
+    to { text-shadow:0 0 12px #00f,0 0 20px #00f;}
 }
 
 @keyframes textGlow { from { text-shadow: 0 0 2px #06277d; } to { text-shadow: 0 0 12px #06277d, 0 0 20px #06277d; } }
@@ -334,7 +334,14 @@
             <p>{{ $product->Category }}</p>
             <h4 class="card-product__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->Name }}</a></h4>
             <p class="card-product__price">Rs {{ $product->Price }}</p>
-            <a href="{{ route('category.products', $product->category) }}" class="buy-now-btn">Buy Now</a>
+            {{-- <a href="{{ route('category.products', $product->category) }}" class="buy-now-btn">Buy Now</a> --}}
+            {{-- <a href="{{ route('category.products', $product->category->id) }}" class="buy-now-btn">
+    Buy Now
+</a> --}}
+
+<a href="{{ route('category.products', $product->category)}}" class="buy-now-btn">
+    Buy Now
+</a>
 
           </div>
         </div>
@@ -363,7 +370,12 @@
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
-				<div class="row section_gap">
+			@if($product->category)
+    <a href="{{ route('category.products', $product->category->id) }}" class="buy-now-btn">
+        Buy Now
+    </a>
+@endif
+	<div class="row section_gap">
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Our Mission</h4>
