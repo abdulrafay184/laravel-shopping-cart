@@ -16,6 +16,26 @@
   <link rel="stylesheet" href="user/assets/css/style.css">
 
 <style>
+    .buy-now-btn{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 18px;
+    background: linear-gradient(135deg, #6ec1ff, #4da3ff);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.buy-now-btn:hover{
+    background: linear-gradient(135deg, #4da3ff, #6ec1ff);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
 /* ================= ELITE VIP GREEN GLASS PRODUCT CARD ================= */
 .card-product { position: relative; border-radius: 25px; overflow: hidden; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(14px) saturate(160%) hue-rotate(90deg); border: 1px solid rgba(0,128,0,0.25); box-shadow: 0 15px 40px rgba(0,128,0,0.25); transition: all 0.8s cubic-bezier(.19,1,.22,1); }
 .card-product:hover { transform: translateY(-15px) scale(1.06) rotate(-1deg); box-shadow: 0 35px 80px rgba(0,255,0,0.35); }
@@ -197,10 +217,10 @@
             </ul>
           </div>
           <div class="card-body">
-            <p>{{ $product->Categary }}</p>
+            <p>{{ $product->Category }}</p>
             <h4 class="card-product__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->Name }}</a></h4>
             <p class="card-product__price">Rs {{ $product->Price }}</p>
-            <a href="{{ route('category.products', ['category' => $product->category]) }}">Buy Now</a>
+            <a href="{{ route('category.products', $product->category) }}" class="buy-now-btn">Buy Now</a>
 
           </div>
         </div>

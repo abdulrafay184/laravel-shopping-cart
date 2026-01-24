@@ -39,7 +39,7 @@ class ProductsController extends Controller
         $product->Price = $data['Price'];
         $product->Quantity = $data['Quantity'];
         $product->Description = $data['Description'];
-        $product->category = $data['Category']; // DB column should be `category`
+        $product->Categary = $data['Categary']; // DB column should be `category`
         $product->Status = $data['Status'];
         $product->pic = $path;                 // DB column should be `pic`
         $product->show_in_home = $req->has('show_in_home') ? 1 : 0; // ⭐ Home page option
@@ -102,10 +102,10 @@ class ProductsController extends Controller
     }
 
     // Category wise products page
-    public function categoryProducts($category)
+    public function categoryProducts($Category)
     {
-        $products = Product::where('category', $category)->get();
-        return view('User.category_products', compact('products', 'category'));
+        $products = Product::where('Category', $Category)->get();
+        return view('User.category_products', compact('products', 'Category'));
     }
 
     // Search page

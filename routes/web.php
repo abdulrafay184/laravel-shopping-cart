@@ -82,7 +82,7 @@ Route::get('/order/{id}', [ProductsController::class, 'order'])->name('place.ord
 Route::get('/deletecourse/{id}', [ProductsController::class, 'deleteProduct'])->name('deleteproduct');
 
 // Category Products
-Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])->name('category.products');
+Route::get('/category/{category}',[ProductsController::class,'categoryProducts'])->name('category.products');
 
 
 // ---------------- CONTACT ----------------
@@ -137,7 +137,7 @@ Route::post('/logout', function () {
     request()->session()->invalidate();
     request()->session()->regenerateToken();
 
-    
+
     return redirect()->route('loginpage');
 })->name('logout');
 
@@ -153,7 +153,7 @@ Route::get('/checkoutsFatch',[CheckoutsController::class,'fatchcheckout'])->name
 
 //search
 Route::get('/search', [ProductsController::class, 'search'])->name('search');
-    
+
 //shop
 Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
 Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.detail');
@@ -165,7 +165,7 @@ Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-});     
+});
 
 
 
@@ -190,7 +190,7 @@ Route::delete('/admin/contact/{id}', [ContactController::class, 'deleteMessage']
     ->name('admin.contact.delete');
 
 
-   //contact msg 
+   //contact msg
 Route::get('/admin/contacts', [ContactController::class, 'adminMessages'])
     ->name('admin.contacts');
 
