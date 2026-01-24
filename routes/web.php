@@ -156,7 +156,7 @@ Route::get('/search', [ProductsController::class, 'search'])->name('search');
 
 //shop
 Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
-Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.detail');
+//Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.detail');
 
 //cart
 
@@ -203,9 +203,31 @@ Route::post('/admin/contacts/reply/{id}', [ContactController::class, 'sendReply'
     Route::get('/product/{id}', [ProductsController::class, 'show'])
     ->name('product.details');
 //shop page
-    Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
+    //Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
 
-    Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
+    //Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
 
     Route::post('/admin/product/insert', [ProductsController::class, 'insertProducts'])
     ->name('insertProducts');
+
+    // HOME
+//Route::get('/', [ProductsController::class, 'index'])->name('home');
+
+// SHOP
+Route::get('/shop', [ProductsController::class, 'shop'])->name('shop');
+
+// PRODUCT DETAIL
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');
+
+// CATEGORY
+Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])
+    ->name('category.products');
+
+// CART
+Route::middleware('auth')->group(function () {
+    Route::post('/add-to-cart/{id}', [CartController::class, 'add'])->name('add.to.cart');
+});
+
+
+// Example
+Route::get('/product/{id}', [ProductsController::class, 'show'])->name('product.details');

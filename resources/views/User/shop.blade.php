@@ -21,31 +21,44 @@
     <!-- Products Grid -->
     <div id="productArea" class="row">
         @forelse($products as $product)
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="{{ asset('storage/'.$product->image) }}" class="card-img-top" alt="{{ $product->name }}">
-                    <div class="card-body d-flex flex-column">
-                        <h6 class="card-title">{{ $product->name }}</h6>
-                        <p class="text-muted small flex-grow-1">{{ Str::limit($product->description, 50) }}</p>
-                        <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span class="fw-bold">Rs {{ $product->price }}</span>
-                            <div class="d-flex">
-                                <a href="{{ route('product.details', $product->id) }}" class="btn btn-sm btn-outline-dark me-1">View</a>
-                                <form action="{{ route('add.to.cart', $product->id) }}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-sm btn-dark">Add to Cart</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+    <div class="card h-100 shadow-sm">
+
+        {{-- Product Image --}}
+        <img src="{{ asset('storage/Products/'.$product->pic) }}"
+             class="card-img-top"
+             style="height:200px; object-fit:cover;"
+             alt="{{ $product->Name }}">
+
+        <div class="card-body d-flex flex-column">
+
+            {{-- Product Name --}}
+            <h6 class="card-title">{{ $product->Name }}</h6>
+
+            {{-- Description --}}
+            <p class="text-muted small flex-grow-1">
+                {{ Str::limit($product->Description, 50) }}
+            </p>
+
+            {{-- Price + Button --}}
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="fw-bold">Rs {{ $product->Price }}</span>
+
+                <a href="{{ route('product.details', $product->id) }}"
+                   class="btn btn-sm btn-outline-dark">
+                    View
+                </a>
             </div>
-        @empty
-            <div class="col-12 text-center">
-                <h4 class="text-danger">Product not available</h4>
-                <p class="text-muted">Try searching something else</p>
-            </div>
-        @endforelse
+
+        </div>
+    </div>
+</div>
+@empty
+<div class="col-12 text-center">
+    <h4 class="text-danger">Product not available</h4>
+</div>
+@endforelse
+
     </div>
 
     <div class="mt-4">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -32,5 +33,10 @@ class CartController extends Controller
             ->get();
 
         return view('cart.index', compact('cartItems'));
+    }
+    function shop(){
+
+
+        return view('User.shop');
     }
 }
