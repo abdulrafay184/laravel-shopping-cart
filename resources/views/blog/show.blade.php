@@ -6,9 +6,9 @@
 <div class="container mt-5">
     <h2 class="mb-3">{{ $blog->title }}</h2>
     <p class="text-muted">Published on: {{ $blog->created_at->format('d M Y') }}</p>
-    
+
     @if($blog->image)
-        <img src="{{ asset('storage/blog/'.$blog->image) }}" alt="{{ $blog->title }}" class="img-fluid mb-4">
+        <img src="{{ asset('storage/blogs/'.$blog->image) }}" alt="{{ $blog->title }}" class="img-fluid mb-4">
     @endif
 
     <div class="content">

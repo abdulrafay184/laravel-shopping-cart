@@ -13,7 +13,7 @@
             @foreach($blogs as $blog)
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="{{ asset('storage/blog/'.$blog->image) }}" class="card-img-top" alt="{{ $blog->title }}" style="height:200px; object-fit:cover;">
+                    <img src="{{ asset('storage/blogs/'.$blog->image) }}" class="card-img-top" alt="{{ $blog->title }}" style="height:200px; object-fit:cover;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $blog->title }}</h5>
                         <p class="card-text">{{ \Illuminate\Support\Str::limit($blog->content, 100) }}</p>

@@ -142,10 +142,11 @@ h2 {
     <table class="table table-bordered table-hover align-middle">
         <thead class="table-dark text-center">
             <tr>
-                <th>#</th>
-                <th>Image</th>
+                <th>ID</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Slug</th>
+                <th>Content</th>
                 <th>Date</th>
                 <th>Actions</th>
             </tr>
@@ -154,15 +155,17 @@ h2 {
             @foreach($blogs as $blog)
             <tr>
                 <td data-label="#"> {{ $loop->iteration }} </td>
+
+                <td data-label="Title">{{ $blog->title }}</td>
                 <td data-label="Image">
                     @if($blog->image)
-                        <img src="{{ asset('storage/blog/'.$blog->image) }}" width="80">
+                        <img src="{{ asset('storage/blogs/'.$blog->image) }}" width="80">
                     @else
                         <span class="text-muted">No image</span>
                     @endif
                 </td>
-                <td data-label="Title">{{ $blog->title }}</td>
                 <td data-label="Slug">{{ $blog->slug }}</td>
+                <td data-label="Slug">{{ $blog->content }}</td>
                 <td data-label="Date">{{ $blog->created_at->format('d M Y') }}</td>
                 <td data-label="Actions">
                     <a href="{{ route('admin.blog.edit', $blog->id) }}" class="btn btn-sm btn-primary">Edit</a>

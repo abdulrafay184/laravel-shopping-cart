@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -82,14 +82,7 @@ class ProductsController extends Controller
     // Shop page with search and optional category filter
     public function shop(Request $request)
     {
-        $products = Product::where('Status', 1)
-            ->when($request->q, function ($query) use ($request) {
-                $query->where('Name', 'like', '%' . $request->q . '%');
-            })
-            ->when($request->category, function ($query) use ($request) {
-                $query->where('category', $request->category);
-            })
-            ->paginate(8);
+        $products = Product::all();
 
         return view('user.shop', compact('products'));
     }
@@ -102,11 +95,13 @@ class ProductsController extends Controller
     }
 
     // Category wise products page
-    public function categoryProducts($Category)
-    {
-        $products = Product::where('Category', $Category)->get();
-        return view('User.category_products', compact('products', 'Category'));
-    }
+  public function categoryProducts($cat)
+{
+    $products = Product::where('Categary', $cat)->get();
+    $Category = $cat; // ye line add karo
+    return view('User.category_products', compact('products', 'Category'));
+}
+
 
     // Search page
     public function search(Request $request)
@@ -121,4 +116,42 @@ class ProductsController extends Controller
 
         return view('User.search-results', compact('products', 'query'));
     }
+
+
+        function Editproduct($id){
+            {
+        $editproduct =Product::findOrFail($id);
+        return view('Admin.editproductform', compact('editproduct'));
+    }
+        }
+
+public function updateproduct(Request $req, $id)
+{
+    $update = Product::findOrFail($id);
+
+    // Update fields
+    $update->Name = $req->Name;
+    $update->Price = $req->Price;
+    $update->Description = $req->Description;
+    $update->Quantity = $req->Quantity;
+    $update->Categary = $req->Categary;
+    $update->Status = $req->Status;
+
+
+    if($req->hasFile('Image')){
+        $old = public_path('storage/Products/' . $update->pic);
+        if(File::exists($old)){
+            File::delete($old);
+        }
+
+        $file = $req->file('Image')->store('Products', 'public');
+        $update->pic = basename($file);
+        $update->save();
+    }
+
+
+    $update->save();
+
+    return redirect()->route('fatchProducts')->with('success', 'Product Updated Successfully');
+}
 }

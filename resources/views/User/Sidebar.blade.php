@@ -43,7 +43,7 @@
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{ route('shop') }}">Shop </a></li>
-                  
+
                 </ul>
 							</li>
               <li class="nav-item submenu dropdown">
@@ -51,7 +51,7 @@
                   aria-expanded="false">Blog</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{ route('blog.index') }}">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="">Blog Details</a></li>
+                  
                 </ul>
 							</li>
 							<li class="nav-item submenu dropdown">
@@ -81,7 +81,7 @@
         <button><i class="ti-search"></i></button>
     </li>
 
-  
+
 
     {{-- Message / Reply Notification --}}
     @auth
@@ -113,19 +113,7 @@
     </li>
     @endif
 
-    <li class="nav-item">
-        <a class="button button-header" href="#">Buy Now</a>
-    </li>
-</ul>
-
-
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+      </header>
 
 @yield("website")
 

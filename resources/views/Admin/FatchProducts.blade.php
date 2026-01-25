@@ -61,7 +61,7 @@ style="
         </td>
         <td style="padding:14px; display:flex; gap:6px;">
             <!-- Edit Button -->
-            <a href=""
+            <a href="{{ route('editproduct' , $data->id)}}"
             style="
                 background:#667eea;
                 color:#fff;
@@ -78,7 +78,7 @@ style="
             >Edit</a>
 
             <!-- Delete Button -->
-            <a href="{{ route('deleteproduct',$data->id) }}"
+            <a href="{{ route('deleteproduct' , $data->id) }}"
             style="
                 background:#ff4d4d;
                 color:#fff;

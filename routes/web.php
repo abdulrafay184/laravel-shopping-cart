@@ -80,9 +80,11 @@ Route::get('/order/{id}', [ProductsController::class, 'order'])->name('place.ord
 
 // Delete Product
 Route::get('/deletecourse/{id}', [ProductsController::class, 'deleteProduct'])->name('deleteproduct');
+Route::get('/editproduct/{id}', [ProductsController::class, 'Editproduct'])->name('editproduct');
+Route::post('/updateproduct/{id}', [ProductsController::class, 'updateproduct'])->name('updateproduct');
 
 // Category Products
-Route::get('/category/{category}',[ProductsController::class,'categoryProducts'])->name('category.products');
+Route::get('/category/{category}', [ProductsController::class, 'categoryProducts'])->name('category.products');
 
 
 // ---------------- CONTACT ----------------

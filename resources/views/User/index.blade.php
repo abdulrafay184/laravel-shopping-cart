@@ -16,178 +16,244 @@
   <link rel="stylesheet" href="user/assets/css/style.css">
 
 <style>
-    .buy-now-btn{
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 18px;
-    background: linear-gradient(135deg, #6ec1ff, #4da3ff);
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.buy-now-btn:hover{
-    background: linear-gradient(135deg, #4da3ff, #6ec1ff);
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
-
 /* ================= ELITE VIP GREEN GLASS PRODUCT CARD ================= */
-.card-product {
-    position: relative;
-    border-radius: 25px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(14px) saturate(160%) hue-rotate(200deg); /* blue hue */
-    border: 1px solid rgba(0,0,128,0.25);
-    box-shadow: 0 15px 40px rgba(0,0,128,0.25);
-    transition: all 0.8s cubic-bezier(.19,1,.22,1);
+/* === CARD BASE === */
+.card-product{
+    background:linear-gradient(180deg,#ffffff,#f6f9ff);
+    border-radius:22px;
+    border:none;
+    overflow:hidden;
+    position:relative;
+    transition:all .45s cubic-bezier(.19,1,.22,1);
+    box-shadow:0 12px 35px rgba(0,0,0,.1);
 }
 
-.card-product:hover {
-    transform: translateY(-15px) scale(1.06) rotate(-1deg);
-    box-shadow: 0 35px 80px rgba(0,0,255,0.35);
+/* FLOAT EFFECT */
+.card-product:hover{
+    transform:translateY(-14px) scale(1.04);
+    box-shadow:0 35px 80px rgba(0,0,0,.22);
 }
 
-.card-product__img img {
-    border-radius: 20px;
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 1s cubic-bezier(.19,1,.22,1), filter 0.6s ease, box-shadow 0.6s ease;
+/* === IMAGE === */
+.card-product__img{
+    position:relative;
+    overflow:hidden;
 }
 
-.card-product:hover .card-product__img img {
-    transform: scale(1.2) rotate(-1deg);
-    filter: brightness(1.1) contrast(1.05) hue-rotate(220deg);
-    box-shadow: 0 15px 45px rgba(0,0,255,0.25);
+.card-product__img img{
+    transition:transform .6s ease;
 }
 
-.card-product::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(0,0,255,0.2), transparent 70%);
-    transform: translateX(-120%);
-    transition: 1s ease;
+.card-product:hover .card-product__img img{
+    transform:scale(1.15);
 }
 
-.card-product:hover::before {
-    transform: translateX(120%);
+/* IMAGE OVERLAY ICONS */
+.card-product__imgOverlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    background:linear-gradient(
+        180deg,
+        rgba(13,110,253,.25),
+        rgba(0,0,0,.45)
+    );
+    opacity:0;
+    transition:.4s;
 }
 
-.card-product__imgOverlay {
-    background: rgba(255,255,255,0.2);
-    transition: background 0.4s ease;
+.card-product:hover .card-product__imgOverlay{
+    opacity:1;
 }
 
-.card-product__imgOverlay i {
-    background: radial-gradient(circle,#00f,#003399);
-    color: #fff;
-    padding: 14px;
-    border-radius: 50%;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+.card-product__imgOverlay li a,
+.card-product__imgOverlay li button{
+    background:#fff;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#0d6efd;
+    border:none;
+    transition:.35s;
 }
 
-.card-product__imgOverlay i:hover {
-    transform: scale(1.3) rotate(15deg);
-    box-shadow: 0 5px 20px rgba(0,0,255,0.45);
+.card-product__imgOverlay li a:hover,
+.card-product__imgOverlay li button:hover{
+    transform:scale(1.2) rotate(8deg);
+    background:#0d6efd;
+    color:#fff;
 }
 
-.card-slider {
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(16px) saturate(160%) hue-rotate(200deg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transform: translateY(100%);
-    transition: transform 0.75s cubic-bezier(.19,1,.22,1);
-    padding: 26px;
+/* === TEXT AREA === */
+.card-body{
+    padding:20px;
 }
 
-.card-product:hover .card-slider {
-    transform: translateY(0);
+.card-body p{
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#6c757d;
 }
 
-.card-slider > * {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: all 0.6s ease;
+.card-product__title a{
+    font-size:16px;
+    font-weight:700;
+    color:#002855;
+    text-decoration:none;
 }
 
-.card-product:hover .card-slider > * {
-    opacity: 1;
-    transform: translateY(0);
+.card-product__title a:hover{
+    color:#0d6efd;
 }
 
-.card-product:hover .card-slider > *:nth-child(1){transition-delay:.1s}
-.card-product:hover .card-slider > *:nth-child(2){transition-delay:.2s}
-.card-product:hover .card-slider > *:nth-child(3){transition-delay:.3s}
-.card-product:hover .card-slider > *:nth-child(4){transition-delay:.4s}
-
-.card-body p, .slider-category {
-    font-family: 'Inter', sans-serif;
-    color: #003366;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+.card-product__price{
+    font-size:18px;
+    font-weight:700;
+    color:#0d6efd;
+    margin:8px 0 14px;
 }
 
-.card-product__title a, .slider-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #003366;
-    letter-spacing: 0.6px;
-    text-decoration: none;
+/* === BUY NOW BUTTON === */
+.card-body a[href*="product.details"]{
+    display:inline-block;
+    padding:11px 32px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#0d6efd,#4facfe);
+    color:#fff;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    box-shadow:0 12px 30px rgba(13,110,253,.45);
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
 }
 
-.card-product__title a:hover, .slider-title:hover {
-    color: #00f;
+/* SHINE */
+.card-body a[href*="product.details"]::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+    transform:translateX(-120%);
+    transition:.6s;
 }
 
-.card-product__price, .slider-price {
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: #00f;
+.card-body a[href*="product.details"]:hover::after{
+    transform:translateX(120%);
 }
 
-.slider-btn, .card-body .btn {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    background: linear-gradient(135deg,#003399,#00f);
-    color: #fff;
-    border-radius: 30px;
-    padding: 10px 28px;
-    border: none;
-    text-decoration: none;
-    transition: all 0.35s ease;
+/* HOVER */
+.card-body a[href*="product.details"]:hover{
+    transform:translateY(-3px) scale(1.08);
+    box-shadow:0 20px 50px rgba(13,110,253,.65);
 }
 
-.slider-btn:hover, .card-body .btn:hover {
-    transform: scale(1.15) rotate(-1deg);
-    box-shadow: 0 10px 25px rgba(0,0,255,0.45);
+
+
+.newsletter{
+    background:linear-gradient(135deg,#eaf4ff,#ffffff);
+    padding:80px 20px;
+    text-align:center;
+    border-radius:30px;
+    margin:80px auto;
 }
 
-.card-product:hover .card-product__title a {
-    animation: textGlow 1.2s infinite alternate;
+.newsletter h2{
+    font-weight:700;
+    color:#003366;
 }
 
-@keyframes textGlow {
-    from { text-shadow:0 0 2px #00f;}
-    to { text-shadow:0 0 12px #00f,0 0 20px #00f;}
+.newsletter p{
+    color:#555;
+    margin-bottom:25px;
 }
 
-@keyframes textGlow { from { text-shadow: 0 0 2px #06277d; } to { text-shadow: 0 0 12px #06277d, 0 0 20px #06277d; } }
+.newsletter form{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.newsletter input{
+    padding:12px 20px;
+    width:280px;
+    border-radius:30px;
+    border:1px solid #ccc;
+    transition:.3s;
+}
+
+.newsletter input:focus{
+    outline:none;
+    border-color:#0d6efd;
+    box-shadow:0 0 0 4px rgba(13,110,253,.15);
+}
+
+.newsletter button{
+    padding:12px 30px;
+    border-radius:30px;
+    border:none;
+    background:linear-gradient(135deg,#0d6efd,#4facfe);
+    color:#fff;
+    font-weight:600;
+    transition:.4s;
+}
+
+.newsletter button:hover{
+    transform:translateY(-2px) scale(1.05);
+    box-shadow:0 12px 30px rgba(13,110,253,.45);
+}
+
+.search-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
+    margin-right:12px;
+}
+
+.search-icon{
+    position:absolute;
+    left:14px;
+    color:#0d6efd;
+    font-size:14px;
+}
+
+.search-input{
+    width:200px;              /* FIXED WIDTH */
+    max-width:100%;
+    padding:8px 14px 8px 36px;
+    border-radius:25px;
+    border:1px solid rgba(0,0,0,.15);
+    background:#fff;
+    transition:border-color .3s, box-shadow .3s;
+}
+
+.search-input:focus{
+    outline:none;
+    border-color:#0d6efd;
+    box-shadow:0 0 0 3px rgba(13,110,253,.15);
+}
+
+/* MOBILE SAFE */
+@media (max-width: 991px){
+    .search-input{
+        width:100%;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -331,17 +397,38 @@
             </ul>
           </div>
           <div class="card-body">
-            <p>{{ $product->Category }}</p>
+            <p>{{ $product->Categary }}</p>
             <h4 class="card-product__title"><a href="{{ route('product.details', $product->id) }}">{{ $product->Name }}</a></h4>
             <p class="card-product__price">Rs {{ $product->Price }}</p>
-            {{-- <a href="{{ route('category.products', $product->category) }}" class="buy-now-btn">Buy Now</a> --}}
-            {{-- <a href="{{ route('category.products', $product->category->id) }}" class="buy-now-btn">
-    Buy Now
-</a> --}}
-
-<a href="{{ route('category.products', $product->category)}}" class="buy-now-btn">
-    Buy Now
+            <a href="{{ route('category.products',$product->Categary) }}"
+   style="
+       display:inline-block;
+       padding:12px 32px;
+       border-radius:999px;
+       background: linear-gradient(135deg,#0d6efd,#4facfe);
+       color:#fff;
+       font-size:14px;
+       font-weight:600;
+       text-decoration:none;
+       box-shadow:0 12px 30px rgba(13,110,253,0.45);
+       position:relative;
+       overflow:hidden;
+       transition: all 0.4s ease;
+   "
+   onmouseover="
+       this.style.background='linear-gradient(135deg,#ff416c,#ff4b2b)';
+       this.style.transform='translateY(-3px) scale(1.08)';
+       this.style.boxShadow='0 20px 50px rgba(255,65,108,0.65)';
+   "
+   onmouseout="
+       this.style.background='linear-gradient(135deg,#0d6efd,#4facfe)';
+       this.style.transform='translateY(0) scale(1)';
+       this.style.boxShadow='0 12px 30px rgba(13,110,253,0.45)';
+   "
+>
+   Buy Now
 </a>
+
 
           </div>
         </div>
@@ -370,12 +457,7 @@
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
-			@if($product->category)
-    <a href="{{ route('category.products', $product->category->id) }}" class="buy-now-btn">
-        Buy Now
-    </a>
-@endif
-	<div class="row section_gap">
+				<div class="row section_gap">
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Our Mission</h4>

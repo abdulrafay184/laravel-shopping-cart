@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
@@ -56,4 +57,52 @@ class BlogController extends Controller
 
         return redirect()->route('admin.blogs')->with('success', 'Blog added');
     }
+
+    function destroy($id){
+
+    $result=Blog::destroy($id);
+    if($result){
+        return redirect()->route('admin.blogs')->with('success','Data is deleted...');
+    }
+    else{
+        return redirect()->route('admin.blogs');
+    }
+}
+
+public function edit($id)
+    {
+        $blog = Blog::findOrFail($id);
+        return view('Admin.blogs.edit', compact('blog'));
+    }
+
+    // ======================
+    // UPDATE USER (ADMIN)
+    // ======================
+    public function update(Request $req, $id)
+    {
+
+        $blog=Blog::find($id);
+        $blog->title=$req['title'];
+        $blog->slug=$req['slug'];
+        $blog->content=$req['content'];
+        if($req->hasfile('image')){
+            $old=Storage_path('app/public/blogs', $blog->image);
+
+            if(File::exists($old)){
+                File::delete($old);
+            }
+
+            $file = $req->file('image')->store('blogs', 'public');
+            $newimg=basename($file);
+            $blog->image=$newimg;
+            $blog->save();
+        }
+
+        return redirect()->route('admin.blogs')
+                         ->with('success', 'User Updated Successfully');
+    }
+
+    
+
+
 }

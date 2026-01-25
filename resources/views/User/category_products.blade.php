@@ -1,10 +1,10 @@
 @extends('User.sidebar')
 
-@section('title', $category.' Products')
+@section('title', $Category.' Products')
 
 @section('website')
 <div class="container mt-5">
-    <h2 class="mb-4">{{ $category }} Products</h2>
+    <h2 class="mb-4">{{ $Category }} Products</h2>
     <div class="row">
         @foreach($products as $product)
         <div class="col-md-4 mb-4">

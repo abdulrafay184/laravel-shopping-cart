@@ -1,7 +1,7 @@
 @extends('Admin.sidebar')
 
 @section('admin')
-<div class="container mt-5">
+<div class="container mt-5 " style='margin-bottom: 100px'>
     <h2>Edit Blog Post</h2>
 
     @if(session('success'))
@@ -14,7 +14,7 @@
 
         <div class="form-group mb-3">
             <label for="title">Title</label>
-            <input type="text" name="title" id="title" 
+            <input type="text" name="title" id="title"
                    class="form-control @error('title') is-invalid @enderror"
                    value="{{ old('title', $blog->title) }}" required>
             @error('title')
@@ -24,7 +24,7 @@
 
         <div class="form-group mb-3">
             <label for="slug">Slug</label>
-            <input type="text" name="slug" id="slug" 
+            <input type="text" name="slug" id="slug"
                    class="form-control @error('slug') is-invalid @enderror"
                    value="{{ old('slug', $blog->slug) }}" required>
             @error('slug')
@@ -45,7 +45,7 @@
         <div class="form-group mb-3">
             <label for="image">Blog Image</label><br>
             @if($blog->image)
-                <img src="{{ asset('storage/blog/'.$blog->image) }}" alt="Blog Image" width="120" class="mb-2">
+                <img src="{{ asset('storage/blogs/'.$blog->image) }}" alt="Blog Image" width="120" class="mb-2">
             @endif
             <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
             @error('image')
